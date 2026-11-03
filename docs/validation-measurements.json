@@ -1,0 +1,211 @@
+{
+  "dataset_provenance": {
+    "source": "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/scifact.zip",
+    "archive_sha256": "536e14446a0ba56ed1398ab1055f39fe852686ecad24a6306c80c490fa8e0165",
+    "qrels_sha256": "0864bb985e0ca2367ba217977e72004d549054b2b06666ed9d4825ac7c21284c",
+    "selection": "first N numeric-sorted official test query IDs; full corpus",
+    "query_ids": [
+      "1",
+      "3",
+      "5",
+      "13",
+      "36",
+      "42",
+      "48",
+      "49",
+      "50",
+      "51",
+      "53",
+      "54",
+      "56",
+      "57",
+      "70",
+      "72",
+      "75",
+      "94",
+      "99",
+      "100"
+    ],
+    "corpus_documents": 5183,
+    "questions": 20,
+    "judgments": "original official test.tsv; no LLM labels; unjudged documents treated as nonrelevant",
+    "text_representation": "one corpus abstract per chunk: title + newline + text; original corpus IDs preserved"
+  },
+  "conditions": {
+    "k": 5,
+    "mrr_cutoff": null,
+    "ranking_depth": 5183,
+    "candidate_k": 5183,
+    "requested_candidate_k": 5183,
+    "query_embedding_cache": false,
+    "repeats": 1,
+    "rerank_k": 20,
+    "rrf_k": 60,
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "warmup_excluded": true,
+    "index_build_ms": 88286.171791,
+    "device": "cpu",
+    "python": "3.9.6",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "OMP_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "completed_benchmark": [
+    {
+      "configuration": "A_dense",
+      "status": "measured",
+      "queries": 20,
+      "recall_at_k": 0.825,
+      "precision_at_k": 0.17,
+      "mrr": 0.58328131252501,
+      "ndcg_at_k": 0.6358572708951551,
+      "latency_ms": 54.78506050000007,
+      "mean_rss_mb": 650.90390625,
+      "peak_rss_mb": 697.015625
+    },
+    {
+      "configuration": "B_hybrid",
+      "status": "measured",
+      "queries": 20,
+      "recall_at_k": 0.875,
+      "precision_at_k": 0.19,
+      "mrr": 0.7289968652037617,
+      "ndcg_at_k": 0.7619227435583744,
+      "latency_ms": 62.88820629999918,
+      "mean_rss_mb": 636.7359375,
+      "peak_rss_mb": 698.28125
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "status": "measured",
+      "queries": 20,
+      "recall_at_k": 0.7,
+      "precision_at_k": 0.14,
+      "mrr": 0.6686298017116983,
+      "ndcg_at_k": 0.6565464876785729,
+      "latency_ms": 924.4116227999989,
+      "mean_rss_mb": 720.075,
+      "peak_rss_mb": 811.859375,
+      "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    }
+  ],
+  "ms_marco_reranker_proof": {
+    "model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "class": "BertForSequenceClassification",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "parameters": 22713601,
+    "dtype": "torch.float32",
+    "device": "cpu",
+    "max_length": 512,
+    "inference_calls": 21,
+    "pairs_scored": 401
+  },
+  "qwen_embedding_smoke": {
+    "kind": "embedding",
+    "api_calls": 0,
+    "status": "passed",
+    "model": "Qwen/Qwen3-Embedding-0.6B",
+    "document_shape": [
+      2,
+      1024
+    ],
+    "query_shape": [
+      1,
+      1024
+    ],
+    "similarities": [
+      0.7352774143218994,
+      0.17652073502540588
+    ],
+    "class_name": "Qwen3Model",
+    "dtype": "torch.bfloat16",
+    "parameters": 595776512,
+    "revision": "97b0c614be4d77ee51c0cef4e5f07c00f9eb65b3",
+    "expected_order_passed": true,
+    "peak_rss_mb": 1244.953125,
+    "elapsed_seconds": 6.098488
+  },
+  "qwen_reranker_smoke": {
+    "kind": "reranker",
+    "api_calls": 0,
+    "status": "passed",
+    "model": {
+      "model": "Qwen/Qwen3-Reranker-0.6B",
+      "class": "Qwen3ForCausalLM",
+      "revision": "e61197ed45024b0ed8a2d74b80b4d909f1255473",
+      "parameters": 595776512,
+      "dtype": "torch.float32",
+      "device": "cpu",
+      "max_length": 2048,
+      "logits_to_keep": 1,
+      "inference_calls": 1,
+      "pairs_scored": 2
+    },
+    "scores": [
+      0.997445821762085,
+      1.5366456864285283e-05
+    ],
+    "expected_order_passed": true,
+    "peak_rss_mb": 2525.984375,
+    "elapsed_seconds": 5.0256215
+  },
+  "qwen_full_benchmark": {
+    "status": "incomplete_user_stopped",
+    "model": "Qwen/Qwen3-Reranker-0.6B",
+    "paid_api_calls": 0,
+    "completed_progress_entries": 10,
+    "note": "Partial progress is retained, but is not a completed/validated Qwen benchmark.",
+    "progress_entries": [
+      {
+        "configuration": "C_hybrid_rerank",
+        "question_id": "1",
+        "latency_ms": 10738.786875000002
+      },
+      {
+        "configuration": "C_hybrid_rerank",
+        "question_id": "3",
+        "latency_ms": 10625.782583000004
+      },
+      {
+        "configuration": "C_hybrid_rerank",
+        "question_id": "5",
+        "latency_ms": 21089.842540999995
+      },
+      {
+        "configuration": "C_hybrid_rerank",
+        "question_id": "13",
+        "latency_ms": 21396.13054099999
+      },
+      {
+        "configuration": "C_hybrid_rerank",
+        "question_id": "36",
+        "latency_ms": 17755.095332999987
+      },
+      {
+        "configuration": "C_hybrid_rerank",
+        "question_id": "42",
+        "latency_ms": 15965.710000000001
+      },
+      {
+        "configuration": "C_hybrid_rerank",
+        "question_id": "48",
+        "latency_ms": 18300.072957999986
+      },
+      {
+        "configuration": "C_hybrid_rerank",
+        "question_id": "49",
+        "latency_ms": 12875.876709000011
+      },
+      {
+        "configuration": "C_hybrid_rerank",
+        "question_id": "50",
+        "latency_ms": 13633.798417000009
+      },
+      {
+        "configuration": "C_hybrid_rerank",
+        "question_id": "51",
+        "latency_ms": 20617.07420799999
+      }
+    ]
+  }
+}

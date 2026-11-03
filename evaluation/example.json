@@ -1,0 +1,25 @@
+{
+  "description": "Synthetic research corpus for pipeline validation, not a claim about real papers or general retrieval quality.",
+  "chunks": [
+    {"chunk_id":"alpha-method","source":"synthetic-alpha.pdf","page":3,"section":"Architecture","kind":"paragraph","text":"AlphaNet uses a convolutional backbone and a feature pyramid network to detect small objects. Multi-scale feature fusion combines shallow high-resolution details with deeper semantic features."},
+    {"chunk_id":"alpha-figure3","source":"synthetic-alpha.pdf","page":4,"label":"Figure 3","kind":"figure","text":"Figure 3. AlphaNet architecture: convolutional backbone, feature pyramid, and three prediction heads for small, medium and large objects."},
+    {"chunk_id":"alpha-table2","source":"synthetic-alpha.pdf","page":6,"label":"Table 2","kind":"table","text":"Table 2. Small-object detection AP: AlphaNet 31.2; baseline 25.0. Both use the same training data and evaluation split."},
+    {"chunk_id":"alpha-table4","source":"synthetic-alpha.pdf","page":7,"label":"Table 4","kind":"table","text":"Table 4. Ablation study: full AlphaNet small-object AP 31.2; without feature pyramid AP 27.1; without multi-scale augmentation AP 29.0. Each ablation removes one component."},
+    {"chunk_id":"alpha-limitations","source":"synthetic-alpha.pdf","page":9,"kind":"paragraph","text":"AlphaNet limitations: evaluation is restricted to daylight street scenes. Night-time performance and deployment latency were not measured."},
+    {"chunk_id":"beta-method","source":"synthetic-beta.pdf","page":2,"section":"Method","kind":"paragraph","text":"BetaDet uses a vision transformer backbone with patch tokens and a single prediction head. It does not use a convolutional feature pyramid."},
+    {"chunk_id":"beta-results","source":"synthetic-beta.pdf","page":5,"label":"Table 1","kind":"table","text":"BetaDet small-object AP is 33.0 on the common daylight street benchmark. AlphaNet AP is 31.2 under the same data split and evaluation protocol. BetaDet requires more memory."},
+    {"chunk_id":"beta-latency","source":"synthetic-beta.pdf","page":6,"kind":"paragraph","text":"BetaDet inference latency is 42 ms per image on the reported GPU. CPU latency was not measured. This result cannot establish CPU deployment speed."},
+    {"chunk_id":"retrieval-method","source":"synthetic-retrieval.txt","page":1,"kind":"paragraph","text":"Hybrid retrieval combines normalized dense embeddings and BM25 lexical ranking using reciprocal rank fusion. RRF adds one divided by a constant plus the rank from each result list."},
+    {"chunk_id":"control-agriculture","source":"synthetic-control.txt","page":1,"kind":"paragraph","text":"The agriculture survey studies irrigation schedules and seasonal rainfall. It contains no object detection experiments."}
+  ],
+  "questions": [
+    {"id":"q1","question":"Which components make up the AlphaNet architecture in Figure 3?","relevant_chunk_ids":["alpha-figure3","alpha-method"],"reference_answer":"AlphaNet uses a convolutional backbone, a feature pyramid, and three prediction heads."},
+    {"id":"q2","question":"Compare AlphaNet small-object AP in Tables 2 and 4.","relevant_chunk_ids":["alpha-table2","alpha-table4"],"reference_answer":"Full AlphaNet scores 31.2 in both tables. Removing the feature pyramid reduces AP to 27.1; removing augmentation reduces it to 29.0."},
+    {"id":"q3","question":"Which performs better on small object detection, AlphaNet or BetaDet?","relevant_chunk_ids":["alpha-table2","beta-results"],"reference_answer":"BetaDet scores 33.0 versus AlphaNet 31.2 under the same evaluation protocol."},
+    {"id":"q4","question":"Why does the ablation support using a feature pyramid?","relevant_chunk_ids":["alpha-table4"],"reference_answer":"Removing the feature pyramid lowers small-object AP from 31.2 to 27.1 in the controlled ablation."},
+    {"id":"q5","question":"What night-time evaluation limitations are reported for AlphaNet?","relevant_chunk_ids":["alpha-limitations"],"reference_answer":"AlphaNet was tested on daylight street scenes; night-time performance was not measured."},
+    {"id":"q6","question":"How do reciprocal rank fusion and BM25 contribute to hybrid retrieval?","relevant_chunk_ids":["retrieval-method"],"reference_answer":"BM25 supplies lexical ranking. RRF combines its ranks with dense retrieval ranks using inverse rank contributions."},
+    {"id":"q7","question":"Can BetaDet's GPU latency establish CPU deployment speed?","relevant_chunk_ids":["beta-latency"],"reference_answer":"No. The reported 42 ms result is on a GPU and CPU latency was not measured."},
+    {"id":"q8","question":"Compare the backbones and prediction heads of AlphaNet and BetaDet.","relevant_chunk_ids":["alpha-method","alpha-figure3","beta-method"],"reference_answer":"AlphaNet uses a convolutional backbone, feature pyramid and three heads. BetaDet uses a vision transformer and one head."}
+  ]
+}

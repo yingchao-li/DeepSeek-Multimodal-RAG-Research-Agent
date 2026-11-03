@@ -1,0 +1,1500 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-03T08:19:21.311579+00:00",
+  "dataset_sha256": "722640b7fe79bb5a3b402ea33fce2ff19ddc906637fe323f689d183dc9e84516",
+  "dataset_description": "BEIR SciFact full corpus, deterministic official test-query slice.",
+  "embedding_model": "all-MiniLM-L6-v2",
+  "embedding_fingerprint": "420dc56012917067afb6",
+  "conditions": {
+    "k": 5,
+    "mrr_cutoff": null,
+    "ranking_depth": 5183,
+    "candidate_k": 5183,
+    "requested_candidate_k": 5183,
+    "query_embedding_cache": false,
+    "repeats": 1,
+    "rerank_k": 20,
+    "rrf_k": 60,
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "warmup_excluded": true,
+    "index_build_ms": 88286.171791,
+    "device": "cpu",
+    "python": "3.9.6",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "OMP_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "api_calls": 0,
+  "answer_quality_requested": false,
+  "summary": [
+    {
+      "configuration": "A_dense",
+      "status": "measured",
+      "queries": 20,
+      "recall_at_k": 0.825,
+      "precision_at_k": 0.17,
+      "mrr": 0.58328131252501,
+      "ndcg_at_k": 0.6358572708951551,
+      "latency_ms": 54.78506050000007,
+      "mean_rss_mb": 650.90390625,
+      "peak_rss_mb": 697.015625
+    },
+    {
+      "configuration": "B_hybrid",
+      "status": "measured",
+      "queries": 20,
+      "recall_at_k": 0.875,
+      "precision_at_k": 0.19,
+      "mrr": 0.7289968652037617,
+      "ndcg_at_k": 0.7619227435583744,
+      "latency_ms": 62.88820629999918,
+      "mean_rss_mb": 636.7359375,
+      "peak_rss_mb": 698.28125
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "status": "measured",
+      "queries": 20,
+      "recall_at_k": 0.7,
+      "precision_at_k": 0.14,
+      "mrr": 0.6686298017116983,
+      "ndcg_at_k": 0.6565464876785729,
+      "latency_ms": 924.4116227999989,
+      "mean_rss_mb": 720.075,
+      "peak_rss_mb": 811.859375,
+      "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    }
+  ],
+  "queries": [
+    {
+      "configuration": "A_dense",
+      "question_id": "1",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-29638116",
+        "scifact-4346436",
+        "scifact-3874000",
+        "scifact-10786948",
+        "scifact-31715818"
+      ],
+      "latency_ms": 54.91979199999264,
+      "latency_runs_ms": [
+        54.91979199999264
+      ],
+      "rss_mb": 514.03125,
+      "peak_rss_mb": 513.828125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 0.2,
+      "ndcg_at_k": 0.38685280723454163
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "3",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-2739854",
+        "scifact-23389795",
+        "scifact-14717500",
+        "scifact-19058822",
+        "scifact-15153602"
+      ],
+      "latency_ms": 47.46712499999717,
+      "latency_runs_ms": [
+        47.46712499999717
+      ],
+      "rss_mb": 515.0,
+      "peak_rss_mb": 515.0,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 0.3333333333333333,
+      "ndcg_at_k": 0.5
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "5",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-3413083",
+        "scifact-13734012",
+        "scifact-13791044",
+        "scifact-21186109",
+        "scifact-5372432"
+      ],
+      "latency_ms": 47.57175000000302,
+      "latency_runs_ms": [
+        47.57175000000302
+      ],
+      "rss_mb": 515.03125,
+      "peak_rss_mb": 515.078125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 0.5,
+      "ndcg_at_k": 0.6309297535714575
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "13",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-7662395",
+        "scifact-4791384",
+        "scifact-1263446",
+        "scifact-11748341",
+        "scifact-8529693"
+      ],
+      "latency_ms": 47.3028339999928,
+      "latency_runs_ms": [
+        47.3028339999928
+      ],
+      "rss_mb": 515.53125,
+      "peak_rss_mb": 515.53125,
+      "api_calls": 0,
+      "recall_at_k": 0.0,
+      "precision_at_k": 0.0,
+      "mrr": 0.058823529411764705,
+      "ndcg_at_k": 0.0
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "36",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-33409100",
+        "scifact-3215494",
+        "scifact-11705328",
+        "scifact-18557974",
+        "scifact-16252863"
+      ],
+      "latency_ms": 47.42654200001084,
+      "latency_runs_ms": [
+        47.42654200001084
+      ],
+      "rss_mb": 515.71875,
+      "peak_rss_mb": 515.71875,
+      "api_calls": 0,
+      "recall_at_k": 0.5,
+      "precision_at_k": 0.2,
+      "mrr": 0.3333333333333333,
+      "ndcg_at_k": 0.3065735963827292
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "42",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-40913091",
+        "scifact-18174210",
+        "scifact-27889071",
+        "scifact-45218443",
+        "scifact-4449524"
+      ],
+      "latency_ms": 183.22991700000557,
+      "latency_runs_ms": [
+        183.22991700000557
+      ],
+      "rss_mb": 694.96875,
+      "peak_rss_mb": 694.96875,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 0.5,
+      "ndcg_at_k": 0.6309297535714575
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "48",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-18617259",
+        "scifact-11349166",
+        "scifact-24512064",
+        "scifact-5850219",
+        "scifact-44672703"
+      ],
+      "latency_ms": 51.82179199999837,
+      "latency_runs_ms": [
+        51.82179199999837
+      ],
+      "rss_mb": 694.96875,
+      "peak_rss_mb": 694.96875,
+      "api_calls": 0,
+      "recall_at_k": 0.0,
+      "precision_at_k": 0.0,
+      "mrr": 0.006802721088435374,
+      "ndcg_at_k": 0.0
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "49",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-5953485",
+        "scifact-23913146",
+        "scifact-5702790",
+        "scifact-8006440",
+        "scifact-2619579"
+      ],
+      "latency_ms": 45.693708999991145,
+      "latency_runs_ms": [
+        45.693708999991145
+      ],
+      "rss_mb": 695.46875,
+      "peak_rss_mb": 695.46875,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "50",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-12580014",
+        "scifact-39559521",
+        "scifact-25738896",
+        "scifact-12489130",
+        "scifact-4561402"
+      ],
+      "latency_ms": 45.05287500001032,
+      "latency_runs_ms": [
+        45.05287500001032
+      ],
+      "rss_mb": 695.640625,
+      "peak_rss_mb": 695.640625,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "51",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-45638119",
+        "scifact-32001951",
+        "scifact-17648235",
+        "scifact-29366489",
+        "scifact-43385013"
+      ],
+      "latency_ms": 45.91499999999371,
+      "latency_runs_ms": [
+        45.91499999999371
+      ],
+      "rss_mb": 695.890625,
+      "peak_rss_mb": 695.890625,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "53",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-45638119",
+        "scifact-32001951",
+        "scifact-17648235",
+        "scifact-29366489",
+        "scifact-7821634"
+      ],
+      "latency_ms": 50.883541000004584,
+      "latency_runs_ms": [
+        50.883541000004584
+      ],
+      "rss_mb": 695.890625,
+      "peak_rss_mb": 695.90625,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "54",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-49556906",
+        "scifact-3973445",
+        "scifact-1590744",
+        "scifact-24721866",
+        "scifact-38533515"
+      ],
+      "latency_ms": 48.334957999998096,
+      "latency_runs_ms": [
+        48.334957999998096
+      ],
+      "rss_mb": 696.15625,
+      "peak_rss_mb": 696.15625,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "56",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-4709641",
+        "scifact-22185730",
+        "scifact-22116439",
+        "scifact-15347087",
+        "scifact-6492658"
+      ],
+      "latency_ms": 48.40916700000264,
+      "latency_runs_ms": [
+        48.40916700000264
+      ],
+      "rss_mb": 696.171875,
+      "peak_rss_mb": 696.171875,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "57",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-4709641",
+        "scifact-22185730",
+        "scifact-22116439",
+        "scifact-15347087",
+        "scifact-6492658"
+      ],
+      "latency_ms": 46.36650000000486,
+      "latency_runs_ms": [
+        46.36650000000486
+      ],
+      "rss_mb": 696.421875,
+      "peak_rss_mb": 696.421875,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "70",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-9483851",
+        "scifact-27949347",
+        "scifact-11903247",
+        "scifact-6896063",
+        "scifact-28107602"
+      ],
+      "latency_ms": 46.839249999990784,
+      "latency_runs_ms": [
+        46.839249999990784
+      ],
+      "rss_mb": 696.4375,
+      "peak_rss_mb": 696.4375,
+      "api_calls": 0,
+      "recall_at_k": 0.0,
+      "precision_at_k": 0.0,
+      "mrr": 0.06666666666666667,
+      "ndcg_at_k": 0.0
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "72",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-6076903",
+        "scifact-8997410",
+        "scifact-2119889",
+        "scifact-14492964",
+        "scifact-25970224"
+      ],
+      "latency_ms": 47.052250000007234,
+      "latency_runs_ms": [
+        47.052250000007234
+      ],
+      "rss_mb": 696.8125,
+      "peak_rss_mb": 696.8125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "75",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-37768883",
+        "scifact-4387784",
+        "scifact-36233757",
+        "scifact-29214508",
+        "scifact-25657127"
+      ],
+      "latency_ms": 47.57399999999734,
+      "latency_runs_ms": [
+        47.57399999999734
+      ],
+      "rss_mb": 696.984375,
+      "peak_rss_mb": 696.984375,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 0.5,
+      "ndcg_at_k": 0.6309297535714575
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "94",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-18321590",
+        "scifact-20428155",
+        "scifact-1215116",
+        "scifact-6503185",
+        "scifact-39424916"
+      ],
+      "latency_ms": 48.079333000004,
+      "latency_runs_ms": [
+        48.079333000004
+      ],
+      "rss_mb": 696.984375,
+      "peak_rss_mb": 697.015625,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 0.3333333333333333,
+      "ndcg_at_k": 0.5
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "99",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-20313748",
+        "scifact-18810195",
+        "scifact-11083121",
+        "scifact-16270577",
+        "scifact-3610282"
+      ],
+      "latency_ms": 48.85583299999041,
+      "latency_runs_ms": [
+        48.85583299999041
+      ],
+      "rss_mb": 696.984375,
+      "peak_rss_mb": 697.0,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 0.5,
+      "ndcg_at_k": 0.6309297535714575
+    },
+    {
+      "configuration": "A_dense",
+      "question_id": "100",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-34982259",
+        "scifact-14550841",
+        "scifact-4381486",
+        "scifact-25516011",
+        "scifact-5415832"
+      ],
+      "latency_ms": 46.90504200000589,
+      "latency_runs_ms": [
+        46.90504200000589
+      ],
+      "rss_mb": 696.984375,
+      "peak_rss_mb": 697.0,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 0.3333333333333333,
+      "ndcg_at_k": 0.5
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "1",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-803312",
+        "scifact-43385013",
+        "scifact-40212412",
+        "scifact-25404036",
+        "scifact-10607877"
+      ],
+      "latency_ms": 53.89833300000646,
+      "latency_runs_ms": [
+        53.89833300000646
+      ],
+      "rss_mb": 697.671875,
+      "peak_rss_mb": 697.703125,
+      "api_calls": 0,
+      "recall_at_k": 0.0,
+      "precision_at_k": 0.0,
+      "mrr": 0.045454545454545456,
+      "ndcg_at_k": 0.0
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "3",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-2739854",
+        "scifact-14717500",
+        "scifact-23389795",
+        "scifact-19058822",
+        "scifact-13519661"
+      ],
+      "latency_ms": 63.479125000000636,
+      "latency_runs_ms": [
+        63.479125000000636
+      ],
+      "rss_mb": 697.8125,
+      "peak_rss_mb": 697.828125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 0.5,
+      "ndcg_at_k": 0.6309297535714575
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "5",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-13734012",
+        "scifact-18617259",
+        "scifact-103007",
+        "scifact-3413083",
+        "scifact-11880289"
+      ],
+      "latency_ms": 58.528540999986944,
+      "latency_runs_ms": [
+        58.528540999986944
+      ],
+      "rss_mb": 698.0625,
+      "peak_rss_mb": 698.0625,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "13",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-7662395",
+        "scifact-1263446",
+        "scifact-17450673",
+        "scifact-8842332",
+        "scifact-23557241"
+      ],
+      "latency_ms": 60.72087500000123,
+      "latency_runs_ms": [
+        60.72087500000123
+      ],
+      "rss_mb": 698.25,
+      "peak_rss_mb": 698.28125,
+      "api_calls": 0,
+      "recall_at_k": 0.0,
+      "precision_at_k": 0.0,
+      "mrr": 0.034482758620689655,
+      "ndcg_at_k": 0.0
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "36",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-33409100",
+        "scifact-42441846",
+        "scifact-18557974",
+        "scifact-11705328",
+        "scifact-16252863"
+      ],
+      "latency_ms": 111.522750000006,
+      "latency_runs_ms": [
+        111.522750000006
+      ],
+      "rss_mb": 625.9375,
+      "peak_rss_mb": 698.25,
+      "api_calls": 0,
+      "recall_at_k": 0.5,
+      "precision_at_k": 0.2,
+      "mrr": 0.25,
+      "ndcg_at_k": 0.2640681225725909
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "42",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-40913091",
+        "scifact-18174210",
+        "scifact-45218443",
+        "scifact-6315132",
+        "scifact-27162821"
+      ],
+      "latency_ms": 64.14245799999208,
+      "latency_runs_ms": [
+        64.14245799999208
+      ],
+      "rss_mb": 625.9375,
+      "peak_rss_mb": 625.953125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 0.5,
+      "ndcg_at_k": 0.6309297535714575
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "48",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-18617259",
+        "scifact-11349166",
+        "scifact-5850219",
+        "scifact-13734012",
+        "scifact-3716075"
+      ],
+      "latency_ms": 62.939333999992186,
+      "latency_runs_ms": [
+        62.939333999992186
+      ],
+      "rss_mb": 625.9375,
+      "peak_rss_mb": 625.953125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 0.25,
+      "ndcg_at_k": 0.43067655807339306
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "49",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-5953485",
+        "scifact-5702790",
+        "scifact-23913146",
+        "scifact-1333643",
+        "scifact-7029990"
+      ],
+      "latency_ms": 57.69329199999618,
+      "latency_runs_ms": [
+        57.69329199999618
+      ],
+      "rss_mb": 625.9375,
+      "peak_rss_mb": 625.953125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "50",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-12580014",
+        "scifact-39559521",
+        "scifact-25738896",
+        "scifact-4561402",
+        "scifact-18488986"
+      ],
+      "latency_ms": 59.37520799999163,
+      "latency_runs_ms": [
+        59.37520799999163
+      ],
+      "rss_mb": 625.9375,
+      "peak_rss_mb": 625.953125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "51",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-45638119",
+        "scifact-7821634",
+        "scifact-21439640",
+        "scifact-2140497",
+        "scifact-3285322"
+      ],
+      "latency_ms": 60.810666999998375,
+      "latency_runs_ms": [
+        60.810666999998375
+      ],
+      "rss_mb": 627.0,
+      "peak_rss_mb": 627.015625,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "53",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-45638119",
+        "scifact-7821634",
+        "scifact-29366489",
+        "scifact-21439640",
+        "scifact-25973484"
+      ],
+      "latency_ms": 60.93954099999621,
+      "latency_runs_ms": [
+        60.93954099999621
+      ],
+      "rss_mb": 627.0,
+      "peak_rss_mb": 627.015625,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "54",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-3973445",
+        "scifact-49556906",
+        "scifact-1590744",
+        "scifact-24721866",
+        "scifact-3419709"
+      ],
+      "latency_ms": 61.110417000008965,
+      "latency_runs_ms": [
+        61.110417000008965
+      ],
+      "rss_mb": 627.0,
+      "peak_rss_mb": 627.015625,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 0.5,
+      "ndcg_at_k": 0.6309297535714575
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "56",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-4709641",
+        "scifact-22185730",
+        "scifact-22116439",
+        "scifact-4459491",
+        "scifact-3140772"
+      ],
+      "latency_ms": 62.3694590000099,
+      "latency_runs_ms": [
+        62.3694590000099
+      ],
+      "rss_mb": 627.0,
+      "peak_rss_mb": 627.015625,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "57",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-4709641",
+        "scifact-22185730",
+        "scifact-22116439",
+        "scifact-4459491",
+        "scifact-3140772"
+      ],
+      "latency_ms": 61.55183399999942,
+      "latency_runs_ms": [
+        61.55183399999942
+      ],
+      "rss_mb": 627.015625,
+      "peak_rss_mb": 627.046875,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "70",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-11903247",
+        "scifact-5956380",
+        "scifact-21307488",
+        "scifact-4414547",
+        "scifact-9169645"
+      ],
+      "latency_ms": 57.63479200000177,
+      "latency_runs_ms": [
+        57.63479200000177
+      ],
+      "rss_mb": 627.015625,
+      "peak_rss_mb": 627.046875,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.4,
+      "mrr": 0.5,
+      "ndcg_at_k": 0.6509209298071326
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "72",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-6076903",
+        "scifact-23974474",
+        "scifact-8997410",
+        "scifact-10666475",
+        "scifact-10937190"
+      ],
+      "latency_ms": 58.13775000000021,
+      "latency_runs_ms": [
+        58.13775000000021
+      ],
+      "rss_mb": 627.015625,
+      "peak_rss_mb": 627.03125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "75",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-4387784",
+        "scifact-13965483",
+        "scifact-25657127",
+        "scifact-26488879",
+        "scifact-37768883"
+      ],
+      "latency_ms": 63.31058299998915,
+      "latency_runs_ms": [
+        63.31058299998915
+      ],
+      "rss_mb": 627.015625,
+      "peak_rss_mb": 627.046875,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "94",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-1215116",
+        "scifact-20610557",
+        "scifact-18321590",
+        "scifact-41294031",
+        "scifact-5402581"
+      ],
+      "latency_ms": 59.99262500000668,
+      "latency_runs_ms": [
+        59.99262500000668
+      ],
+      "rss_mb": 627.015625,
+      "peak_rss_mb": 627.03125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "99",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-18810195",
+        "scifact-21754541",
+        "scifact-30208015",
+        "scifact-39389082",
+        "scifact-35531883"
+      ],
+      "latency_ms": 59.86879200000317,
+      "latency_runs_ms": [
+        59.86879200000317
+      ],
+      "rss_mb": 627.015625,
+      "peak_rss_mb": 627.03125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "B_hybrid",
+      "question_id": "100",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-4381486",
+        "scifact-34982259",
+        "scifact-25516011",
+        "scifact-92499",
+        "scifact-13116880"
+      ],
+      "latency_ms": 59.73774999999648,
+      "latency_runs_ms": [
+        59.73774999999648
+      ],
+      "rss_mb": 543.140625,
+      "peak_rss_mb": 627.03125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "1",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-43385013",
+        "scifact-6863070",
+        "scifact-10906636",
+        "scifact-10608397",
+        "scifact-27049238"
+      ],
+      "latency_ms": 1016.3179999999983,
+      "latency_runs_ms": [
+        1016.3179999999983
+      ],
+      "rss_mb": 732.4375,
+      "peak_rss_mb": 732.4375,
+      "api_calls": 0,
+      "recall_at_k": 0.0,
+      "precision_at_k": 0.0,
+      "mrr": 0.045454545454545456,
+      "ndcg_at_k": 0.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "3",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-14717500",
+        "scifact-4414547",
+        "scifact-2739854",
+        "scifact-4632921",
+        "scifact-19058822"
+      ],
+      "latency_ms": 757.1009170000025,
+      "latency_runs_ms": [
+        757.1009170000025
+      ],
+      "rss_mb": 775.015625,
+      "peak_rss_mb": 775.015625,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "5",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-13734012",
+        "scifact-18617259",
+        "scifact-5850219",
+        "scifact-17333231",
+        "scifact-3413083"
+      ],
+      "latency_ms": 879.7192499999937,
+      "latency_runs_ms": [
+        879.7192499999937
+      ],
+      "rss_mb": 790.984375,
+      "peak_rss_mb": 791.0,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "13",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-1263446",
+        "scifact-25182647",
+        "scifact-17450673",
+        "scifact-26611834",
+        "scifact-7662395"
+      ],
+      "latency_ms": 1008.0876250000017,
+      "latency_runs_ms": [
+        1008.0876250000017
+      ],
+      "rss_mb": 780.578125,
+      "peak_rss_mb": 792.0625,
+      "api_calls": 0,
+      "recall_at_k": 0.0,
+      "precision_at_k": 0.0,
+      "mrr": 0.034482758620689655,
+      "ndcg_at_k": 0.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "36",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-33409100",
+        "scifact-18557974",
+        "scifact-37424881",
+        "scifact-42441846",
+        "scifact-16252863"
+      ],
+      "latency_ms": 951.0232499999915,
+      "latency_runs_ms": [
+        951.0232499999915
+      ],
+      "rss_mb": 781.9375,
+      "peak_rss_mb": 782.078125,
+      "api_calls": 0,
+      "recall_at_k": 0.0,
+      "precision_at_k": 0.0,
+      "mrr": 0.14285714285714285,
+      "ndcg_at_k": 0.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "42",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-18174210",
+        "scifact-40913091",
+        "scifact-27889071",
+        "scifact-6315132",
+        "scifact-42441846"
+      ],
+      "latency_ms": 946.6373329999982,
+      "latency_runs_ms": [
+        946.6373329999982
+      ],
+      "rss_mb": 766.515625,
+      "peak_rss_mb": 782.453125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "48",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-18617259",
+        "scifact-11349166",
+        "scifact-13734012",
+        "scifact-5850219",
+        "scifact-23531592"
+      ],
+      "latency_ms": 941.0884580000101,
+      "latency_runs_ms": [
+        941.0884580000101
+      ],
+      "rss_mb": 767.375,
+      "peak_rss_mb": 767.40625,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 0.3333333333333333,
+      "ndcg_at_k": 0.5
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "49",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-5953485",
+        "scifact-5702790",
+        "scifact-12652963",
+        "scifact-23913146",
+        "scifact-18467982"
+      ],
+      "latency_ms": 772.5354580000072,
+      "latency_runs_ms": [
+        772.5354580000072
+      ],
+      "rss_mb": 792.828125,
+      "peak_rss_mb": 792.859375,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "50",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-12580014",
+        "scifact-25738896",
+        "scifact-39559521",
+        "scifact-18488986",
+        "scifact-301838"
+      ],
+      "latency_ms": 726.2807500000008,
+      "latency_runs_ms": [
+        726.2807500000008
+      ],
+      "rss_mb": 793.640625,
+      "peak_rss_mb": 793.671875,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "51",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-8963413",
+        "scifact-45638119",
+        "scifact-21439640",
+        "scifact-7821634",
+        "scifact-13007205"
+      ],
+      "latency_ms": 955.6585410000054,
+      "latency_runs_ms": [
+        955.6585410000054
+      ],
+      "rss_mb": 794.25,
+      "peak_rss_mb": 794.28125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 0.5,
+      "ndcg_at_k": 0.6309297535714575
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "53",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-45638119",
+        "scifact-8963413",
+        "scifact-21439640",
+        "scifact-24349992",
+        "scifact-7821634"
+      ],
+      "latency_ms": 957.0670829999983,
+      "latency_runs_ms": [
+        957.0670829999983
+      ],
+      "rss_mb": 753.34375,
+      "peak_rss_mb": 794.328125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "54",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-3973445",
+        "scifact-23974474",
+        "scifact-24721866",
+        "scifact-1590744",
+        "scifact-9899292"
+      ],
+      "latency_ms": 949.360249999998,
+      "latency_runs_ms": [
+        949.360249999998
+      ],
+      "rss_mb": 767.921875,
+      "peak_rss_mb": 767.9375,
+      "api_calls": 0,
+      "recall_at_k": 0.0,
+      "precision_at_k": 0.0,
+      "mrr": 0.14285714285714285,
+      "ndcg_at_k": 0.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "56",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-4709641",
+        "scifact-22185730",
+        "scifact-4345605",
+        "scifact-35520219",
+        "scifact-21295300"
+      ],
+      "latency_ms": 820.4096660000033,
+      "latency_runs_ms": [
+        820.4096660000033
+      ],
+      "rss_mb": 789.28125,
+      "peak_rss_mb": 789.296875,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "57",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-4709641",
+        "scifact-22185730",
+        "scifact-35520219",
+        "scifact-4345605",
+        "scifact-11659421"
+      ],
+      "latency_ms": 825.6904999999932,
+      "latency_runs_ms": [
+        825.6904999999932
+      ],
+      "rss_mb": 789.609375,
+      "peak_rss_mb": 789.625,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "70",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-21307488",
+        "scifact-6896063",
+        "scifact-7465900",
+        "scifact-21557055",
+        "scifact-31624828"
+      ],
+      "latency_ms": 830.7766249999986,
+      "latency_runs_ms": [
+        830.7766249999986
+      ],
+      "rss_mb": 796.65625,
+      "peak_rss_mb": 811.859375,
+      "api_calls": 0,
+      "recall_at_k": 0.0,
+      "precision_at_k": 0.0,
+      "mrr": 0.0625,
+      "ndcg_at_k": 0.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "72",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-6076903",
+        "scifact-18895793",
+        "scifact-14492964",
+        "scifact-1031534",
+        "scifact-10666475"
+      ],
+      "latency_ms": 1249.5513339999889,
+      "latency_runs_ms": [
+        1249.5513339999889
+      ],
+      "rss_mb": 535.359375,
+      "peak_rss_mb": 796.453125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "75",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-4387784",
+        "scifact-37768883",
+        "scifact-13965483",
+        "scifact-25657127",
+        "scifact-29214508"
+      ],
+      "latency_ms": 1154.1854580000006,
+      "latency_runs_ms": [
+        1154.1854580000006
+      ],
+      "rss_mb": 538.6875,
+      "peak_rss_mb": 592.90625,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "94",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-20610557",
+        "scifact-39424916",
+        "scifact-25388309",
+        "scifact-20428155",
+        "scifact-41294031"
+      ],
+      "latency_ms": 837.6782499999962,
+      "latency_runs_ms": [
+        837.6782499999962
+      ],
+      "rss_mb": 547.203125,
+      "peak_rss_mb": 547.234375,
+      "api_calls": 0,
+      "recall_at_k": 0.0,
+      "precision_at_k": 0.0,
+      "mrr": 0.1111111111111111,
+      "ndcg_at_k": 0.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "99",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-18810195",
+        "scifact-12225214",
+        "scifact-30208015",
+        "scifact-21754541",
+        "scifact-10247314"
+      ],
+      "latency_ms": 1168.6195829999947,
+      "latency_runs_ms": [
+        1168.6195829999947
+      ],
+      "rss_mb": 561.328125,
+      "peak_rss_mb": 561.34375,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "100",
+      "status": "measured",
+      "retrieved_chunk_ids": [
+        "scifact-4381486",
+        "scifact-2701077",
+        "scifact-14550841",
+        "scifact-30714190",
+        "scifact-13116880"
+      ],
+      "latency_ms": 740.4441249999962,
+      "latency_runs_ms": [
+        740.4441249999962
+      ],
+      "rss_mb": 546.546875,
+      "peak_rss_mb": 582.828125,
+      "api_calls": 0,
+      "recall_at_k": 1.0,
+      "precision_at_k": 0.2,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0
+    }
+  ],
+  "dependencies": {
+    "faiss-cpu": "1.13.0",
+    "sentence-transformers": "5.1.2",
+    "transformers": "4.57.6",
+    "numpy": "2.0.2"
+  },
+  "dataset_provenance": {
+    "source": "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/scifact.zip",
+    "archive_sha256": "536e14446a0ba56ed1398ab1055f39fe852686ecad24a6306c80c490fa8e0165",
+    "qrels_sha256": "0864bb985e0ca2367ba217977e72004d549054b2b06666ed9d4825ac7c21284c",
+    "selection": "first N numeric-sorted official test query IDs; full corpus",
+    "query_ids": [
+      "1",
+      "3",
+      "5",
+      "13",
+      "36",
+      "42",
+      "48",
+      "49",
+      "50",
+      "51",
+      "53",
+      "54",
+      "56",
+      "57",
+      "70",
+      "72",
+      "75",
+      "94",
+      "99",
+      "100"
+    ],
+    "corpus_documents": 5183,
+    "questions": 20,
+    "judgments": "original official test.tsv; no LLM labels; unjudged documents treated as nonrelevant",
+    "text_representation": "one corpus abstract per chunk: title + newline + text; original corpus IDs preserved"
+  },
+  "reranker_load_and_warmup_ms": 84.41479100000038,
+  "reranker_inference_proof": {
+    "model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "class": "BertForSequenceClassification",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "parameters": 22713601,
+    "dtype": "torch.float32",
+    "device": "cpu",
+    "max_length": 512,
+    "inference_calls": 21,
+    "pairs_scored": 401
+  }
+}

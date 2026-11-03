@@ -1,0 +1,59 @@
+{
+  "status": "incomplete_user_stopped",
+  "model": "Qwen/Qwen3-Reranker-0.6B",
+  "paid_api_calls": 0,
+  "completed_progress_entries": 10,
+  "note": "Partial progress is retained, but is not a completed/validated Qwen benchmark.",
+  "progress_entries": [
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "1",
+      "latency_ms": 10738.786875000002
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "3",
+      "latency_ms": 10625.782583000004
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "5",
+      "latency_ms": 21089.842540999995
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "13",
+      "latency_ms": 21396.13054099999
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "36",
+      "latency_ms": 17755.095332999987
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "42",
+      "latency_ms": 15965.710000000001
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "48",
+      "latency_ms": 18300.072957999986
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "49",
+      "latency_ms": 12875.876709000011
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "50",
+      "latency_ms": 13633.798417000009
+    },
+    {
+      "configuration": "C_hybrid_rerank",
+      "question_id": "51",
+      "latency_ms": 20617.07420799999
+    }
+  ]
+}

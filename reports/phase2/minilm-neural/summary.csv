@@ -1,0 +1,4 @@
+configuration,status,queries,recall_at_k,precision_at_k,mrr,ndcg_at_k,latency_ms,mean_rss_mb,peak_rss_mb,reranker_model,error_type
+A_dense,measured,20,0.825,0.17,0.58328131252501,0.6358572708951551,54.78506050000007,650.90390625,697.015625,,
+B_hybrid,measured,20,0.875,0.19,0.7289968652037617,0.7619227435583744,62.88820629999918,636.7359375,698.28125,,
+C_hybrid_rerank,measured,20,0.7,0.14,0.6686298017116983,0.6565464876785729,924.4116227999989,720.075,811.859375,cross-encoder/ms-marco-MiniLM-L-6-v2,

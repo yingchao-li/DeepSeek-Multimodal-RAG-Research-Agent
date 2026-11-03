@@ -1,0 +1,63 @@
+.venv*/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.idea/
+.DS_Store
+.streamlit/secrets.toml
+.env
+.env.*
+!.env.example
+data/
+cache/
+.cache/
+indices/
+# Keep generated logs, datasets and private runtime reports out of Git, while
+# retaining the small, sanitized benchmark/API evidence referenced by README.
+reports/*
+!reports/phase2/
+reports/phase2/*
+!reports/phase2/minilm-neural/
+reports/phase2/minilm-neural/*
+!reports/phase2/minilm-neural/summary.csv
+!reports/phase2/minilm-neural/retrieval.json
+!reports/phase2/minilm-neural/queries.csv
+!reports/phase2/qwen-neural/
+reports/phase2/qwen-neural/*
+!reports/phase2/qwen-neural/incomplete.json
+!reports/phase3/
+reports/phase3/*
+!reports/phase3/real-api-results.json
+output/
+tmp/
+.upgrade-backups/
+*.faiss
+*.index
+*.log
+
+# Secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Local data and models
+data/
+.cache/
+*.safetensors
+*.pt
+*.pth
+
+# macOS
+.DS_Store

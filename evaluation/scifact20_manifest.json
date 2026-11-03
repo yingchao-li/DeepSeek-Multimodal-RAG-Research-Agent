@@ -1,0 +1,32 @@
+{
+  "source": "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/scifact.zip",
+  "archive_sha256": "536e14446a0ba56ed1398ab1055f39fe852686ecad24a6306c80c490fa8e0165",
+  "qrels_sha256": "0864bb985e0ca2367ba217977e72004d549054b2b06666ed9d4825ac7c21284c",
+  "selection": "first N numeric-sorted official test query IDs; full corpus",
+  "query_ids": [
+    "1",
+    "3",
+    "5",
+    "13",
+    "36",
+    "42",
+    "48",
+    "49",
+    "50",
+    "51",
+    "53",
+    "54",
+    "56",
+    "57",
+    "70",
+    "72",
+    "75",
+    "94",
+    "99",
+    "100"
+  ],
+  "corpus_documents": 5183,
+  "questions": 20,
+  "judgments": "original official test.tsv; no LLM labels; unjudged documents treated as nonrelevant",
+  "text_representation": "one corpus abstract per chunk: title + newline + text; original corpus IDs preserved"
+}

@@ -1,0 +1,536 @@
+{
+  "kind": "real_paid_deepseek_api_validation",
+  "base_url": "https://api.deepseek.com",
+  "configured_text_model": "deepseek-chat",
+  "configured_vision_model": "deepseek-flash",
+  "sdk_retries": 0,
+  "hard_request_cap": 12,
+  "actual_requests": 10,
+  "totals": {
+    "prompt_tokens": 4961,
+    "completion_tokens": 1183,
+    "total_tokens": 6144,
+    "estimated_cost_usd": null
+  },
+  "results": [
+    {
+      "name": "Test 1：真实文本聊天",
+      "status": "PASS",
+      "answer": "法国的首都是巴黎。",
+      "expected": "应回答巴黎",
+      "wall_latency_ms": 1501.14,
+      "requests": [
+        {
+          "sequence": 1,
+          "model": "deepseek-chat",
+          "ok": true,
+          "prompt_tokens": 90,
+          "completion_tokens": 5,
+          "estimated_cost_usd": null,
+          "response_model": "deepseek-flash",
+          "total_tokens": 95,
+          "latency_ms": 1500.92
+        }
+      ]
+    },
+    {
+      "name": "Test 2：真实图片理解",
+      "status": "PASS",
+      "answer": "中间那根蓝色柱子最高。",
+      "expected": "蓝色柱子最高",
+      "image_blocks": 1,
+      "image_file": "reports/phase3/three-bars.png",
+      "wall_latency_ms": 1131.66,
+      "requests": [
+        {
+          "sequence": 2,
+          "model": "deepseek-flash",
+          "ok": true,
+          "prompt_tokens": 308,
+          "completion_tokens": 53,
+          "estimated_cost_usd": null,
+          "response_model": "deepseek-flash",
+          "total_tokens": 361,
+          "latency_ms": 1130.83
+        }
+      ]
+    },
+    {
+      "name": "Test 3：真实多轮视觉聊天",
+      "status": "PASS",
+      "answer": "最低的柱子是绿色的。",
+      "expected": "绿色柱子最低",
+      "image_blocks": 1,
+      "duplicate_images": false,
+      "wall_latency_ms": 1295.61,
+      "requests": [
+        {
+          "sequence": 3,
+          "model": "deepseek-flash",
+          "ok": true,
+          "prompt_tokens": 326,
+          "completion_tokens": 40,
+          "estimated_cost_usd": null,
+          "response_model": "deepseek-flash",
+          "total_tokens": 366,
+          "latency_ms": 1293.74
+        }
+      ]
+    },
+    {
+      "name": "Test 4：真实 Multimodal PDF RAG",
+      "status": "PASS",
+      "answer": "Figure 3 中最高的柱子是**蓝色（BLUE）**。\n\n图中三根柱子从左到右依次标为 RED、BLUE、GREEN，其中中间蓝色柱子的高度明显最高 [S2]。该图被描述为一张含三根柱子的颜色性能图 [S1]。",
+      "expected": "蓝色；synthetic-aster.pdf 第2页 Figure 3",
+      "retrieved": [
+        "synthetic-aster.pdf, p. 2, 2 Visual Results",
+        "synthetic-aster.pdf, p. 2, Figure 3, 2 Visual Results",
+        "synthetic-aster.pdf, p. 2, 3 Discussion",
+        "synthetic-aster.pdf, p. 3, 4 Ablation",
+        "synthetic-aster.pdf, p. 2, 2 Visual Results",
+        "synthetic-aster.pdf, p. 2, 3 Discussion"
+      ],
+      "visual_evidence": [
+        "synthetic-aster.pdf, p. 2, Figure 3, 2 Visual Results"
+      ],
+      "image_count": 1,
+      "wall_latency_ms": 2090.24,
+      "requests": [
+        {
+          "sequence": 4,
+          "model": "deepseek-flash",
+          "ok": true,
+          "prompt_tokens": 793,
+          "completion_tokens": 112,
+          "estimated_cost_usd": null,
+          "response_model": "deepseek-flash",
+          "total_tokens": 905,
+          "latency_ms": 2073.91
+        }
+      ]
+    },
+    {
+      "name": "Test 5：真实跨文档问答",
+      "status": "PASS",
+      "answer": "**结论：Boreal 更高。**\n\n- **Boreal**：small-object AP 为 **83.0** [S1][S2][S6]\n- **Aster**：small-object AP 为 **81.0** [S3][S4][S5][S8]\n- **差值**：83.0 − 81.0 = **2.0**\n\n**可比性说明**：资料明确说明两者使用相同的日光数据集和相同的测试划分（“the same daylight dataset and test split”），因此这一比较是在受控条件下进行的 [S6][S8]。\n\n**补充**：这些文件自述为“Synthetic integration fixture - not a real research result”（合成集成测试样例，并非真实研究结果）[S6][S8]，引用时需注意其性质。",
+      "expected": "Boreal 83.0，Aster 81.0，Boreal 高 2.0 AP",
+      "retrieved_sources": [
+        "synthetic-aster.pdf",
+        "synthetic-boreal.pdf"
+      ],
+      "evidence": [
+        {
+          "citation": "S1",
+          "chunk_id": "16a38fed5fcc0dd54acd",
+          "source": "synthetic-boreal.pdf",
+          "page": 1,
+          "section": "1 Boreal Method",
+          "kind": "paragraph"
+        },
+        {
+          "citation": "S2",
+          "chunk_id": "4294a5ec627e5e38ab84",
+          "source": "synthetic-boreal.pdf",
+          "page": 1,
+          "section": "1 Boreal Method",
+          "label": "Table 1",
+          "kind": "table"
+        },
+        {
+          "citation": "S3",
+          "chunk_id": "664e694d2aa722ac2f65",
+          "source": "synthetic-aster.pdf",
+          "page": 1,
+          "section": "1 Introduction",
+          "kind": "paragraph"
+        },
+        {
+          "citation": "S4",
+          "chunk_id": "8c28c34d5c84b02dabc4",
+          "source": "synthetic-aster.pdf",
+          "page": 1,
+          "section": "1 Introduction",
+          "label": "Table 2",
+          "kind": "table"
+        },
+        {
+          "citation": "S5",
+          "chunk_id": "0311ac6d91078fd5ebb5",
+          "source": "synthetic-aster.pdf",
+          "page": 3,
+          "section": "4 Ablation",
+          "label": "Table 4",
+          "kind": "table"
+        },
+        {
+          "citation": "S6",
+          "chunk_id": "449e8b677b32b988af7f",
+          "source": "synthetic-boreal.pdf",
+          "page": 1,
+          "section": "1 Boreal Method",
+          "kind": "paragraph"
+        },
+        {
+          "citation": "S7",
+          "chunk_id": "0d46845acb6874689e52",
+          "source": "synthetic-boreal.pdf",
+          "page": 1,
+          "section": "1 Boreal Method",
+          "kind": "heading"
+        },
+        {
+          "citation": "S8",
+          "chunk_id": "5e652a1469ee246140b5",
+          "source": "synthetic-aster.pdf",
+          "page": 1,
+          "section": "1 Introduction",
+          "kind": "paragraph"
+        }
+      ],
+      "wall_latency_ms": 1629.21,
+      "requests": [
+        {
+          "sequence": 5,
+          "model": "deepseek-chat",
+          "ok": true,
+          "prompt_tokens": 737,
+          "completion_tokens": 171,
+          "estimated_cost_usd": null,
+          "response_model": "deepseek-flash",
+          "total_tokens": 908,
+          "latency_ms": 1608.05
+        }
+      ]
+    },
+    {
+      "name": "Test 6：真实 Agentic RAG",
+      "status": "PASS",
+      "answer": "**结论：Boreal 更高。**\n\n- **Boreal：83.0 small-object AP** [S5][S6][S7]\n- **Aster：81.0 small-object AP** [S1][S2][S5][S6]\n- **差距：2.0 AP**（83.0 − 81.0）\n\n**可比性说明：** 两份资料都说明，Aster 与 Boreal 使用的是同一套白天数据集和同一评测划分，因此这一比较属于受控对比 [S3][S7]。\n\n**资料明确说明未进行的评测：**\n- **夜间场景（night-time scenes）未测** [S4]\n- **CPU 推理延迟（CPU inference latency）未测** [S4]\n\n**补充（消融结果，非跨方法比较）：** Aster 去掉特征金字塔后，small-object AP 从 81.0 降到 74.0，说明特征金字塔对该指标有贡献 [S4]。\n\n**注意：** 所给材料中两份文档均标注为“Synthetic integration fixture - not a real research result”（合成整合样例，非真实研究结果）[S3][S7]，引用这些数值时应保留这一限定。",
+      "expected": "Boreal 83.0 vs Aster 81.0；相差 2.0；夜间场景与 CPU 延迟未测",
+      "retrieved_sources": [
+        "synthetic-aster.pdf",
+        "synthetic-boreal.pdf"
+      ],
+      "trace": {
+        "router_domain": "library",
+        "path": "agentic_rag",
+        "steps": [
+          {
+            "iteration": 1,
+            "searches": [
+              {
+                "query": "比较 Aster 和 Boreal 在相同测试集上的 small-object AP，说明谁更高、相差多少，并指出资料明确说哪些评测未进行。",
+                "source": "synthetic-aster.pdf",
+                "chunk_ids": [
+                  "664e694d2aa722ac2f65",
+                  "8c28c34d5c84b02dabc4",
+                  "0311ac6d91078fd5ebb5",
+                  "5e652a1469ee246140b5",
+                  "9c85441ba97498cd916b"
+                ],
+                "retrieval": {
+                  "strategy": "hybrid",
+                  "rerank_applied": false,
+                  "warning": null,
+                  "latency_ms": 19.34
+                }
+              },
+              {
+                "query": "比较 Aster 和 Boreal 在相同测试集上的 small-object AP，说明谁更高、相差多少，并指出资料明确说哪些评测未进行。",
+                "source": "synthetic-boreal.pdf",
+                "chunk_ids": [
+                  "16a38fed5fcc0dd54acd",
+                  "4294a5ec627e5e38ab84",
+                  "449e8b677b32b988af7f",
+                  "60d6f77391fa722273d1",
+                  "0d46845acb6874689e52"
+                ],
+                "retrieval": {
+                  "strategy": "hybrid",
+                  "rerank_applied": false,
+                  "warning": null,
+                  "latency_ms": 0.44
+                }
+              }
+            ],
+            "grading": {
+              "results": [
+                {
+                  "idx": 0,
+                  "relevant": true,
+                  "score": 0.6
+                },
+                {
+                  "idx": 1,
+                  "relevant": true,
+                  "score": 0.6
+                },
+                {
+                  "idx": 2,
+                  "relevant": false,
+                  "score": 0.2
+                },
+                {
+                  "idx": 3,
+                  "relevant": true,
+                  "score": 0.7
+                },
+                {
+                  "idx": 4,
+                  "relevant": true,
+                  "score": 0.8
+                },
+                {
+                  "idx": 5,
+                  "relevant": true,
+                  "score": 0.9
+                },
+                {
+                  "idx": 6,
+                  "relevant": true,
+                  "score": 0.9
+                },
+                {
+                  "idx": 7,
+                  "relevant": true,
+                  "score": 0.9
+                },
+                {
+                  "idx": 8,
+                  "relevant": false,
+                  "score": 0.1
+                },
+                {
+                  "idx": 9,
+                  "relevant": false,
+                  "score": 0.1
+                }
+              ],
+              "raw": "{\"results\":[{\"idx\":0,\"relevant\":true,\"score\":0.6},{\"idx\":1,\"relevant\":true,\"score\":0.6},{\"idx\":2,\"relevant\":false,\"score\":0.2},{\"idx\":3,\"relevant\":true,\"score\":0.7},{\"idx\":4,\"relevant\":true,\"score\":0.8},{\"idx\":5,\"relevant\":true,\"score\":0.9},{\"idx\":6,\"relevant\":true,\"score\":0.9},{\"idx\":7,\"relevant\":true,\"score\":0.9},{\"idx\":8,\"relevant\":false,\"score\":0.1},{\"idx\":9,\"relevant\":false,\"score\":0.1}]}",
+              "kept_count": 7
+            },
+            "evidence_ids": [
+              "664e694d2aa722ac2f65",
+              "8c28c34d5c84b02dabc4",
+              "5e652a1469ee246140b5",
+              "9c85441ba97498cd916b",
+              "16a38fed5fcc0dd54acd",
+              "4294a5ec627e5e38ab84",
+              "449e8b677b32b988af7f"
+            ],
+            "sufficiency": {
+              "sufficient": true,
+              "missing_query": "",
+              "reason": "Evidence gives Aster 81.0 and Boreal 83.0 on the same test set, so Boreal is higher by 2.0 AP; it also states night-time scenes and CPU inference latency were not measured."
+            }
+          }
+        ],
+        "limits": {
+          "max_iterations": 2,
+          "max_tool_calls": 6,
+          "max_api_calls": 6,
+          "max_output_tokens": 700,
+          "max_input_chars": 100000,
+          "max_evidence": 10,
+          "max_visuals": 0
+        },
+        "tool_calls": 2,
+        "warnings": [],
+        "router": {
+          "route": "kb",
+          "reason": "询问上传资料中两个模型的测试指标对比及未进行的评测，属于文档内容事实检索",
+          "raw": "{\"route\":\"kb\",\"reason\":\"询问上传资料中两个模型的测试指标对比及未进行的评测，属于文档内容事实检索\"}"
+        },
+        "evidence": [
+          {
+            "citation": "S1",
+            "chunk_id": "664e694d2aa722ac2f65",
+            "source": "synthetic-aster.pdf",
+            "page": 1,
+            "section": "1 Introduction",
+            "kind": "paragraph"
+          },
+          {
+            "citation": "S2",
+            "chunk_id": "8c28c34d5c84b02dabc4",
+            "source": "synthetic-aster.pdf",
+            "page": 1,
+            "section": "1 Introduction",
+            "label": "Table 2",
+            "kind": "table"
+          },
+          {
+            "citation": "S3",
+            "chunk_id": "5e652a1469ee246140b5",
+            "source": "synthetic-aster.pdf",
+            "page": 1,
+            "section": "1 Introduction",
+            "kind": "paragraph"
+          },
+          {
+            "citation": "S4",
+            "chunk_id": "9c85441ba97498cd916b",
+            "source": "synthetic-aster.pdf",
+            "page": 3,
+            "section": "4 Ablation",
+            "kind": "paragraph"
+          },
+          {
+            "citation": "S5",
+            "chunk_id": "16a38fed5fcc0dd54acd",
+            "source": "synthetic-boreal.pdf",
+            "page": 1,
+            "section": "1 Boreal Method",
+            "kind": "paragraph"
+          },
+          {
+            "citation": "S6",
+            "chunk_id": "4294a5ec627e5e38ab84",
+            "source": "synthetic-boreal.pdf",
+            "page": 1,
+            "section": "1 Boreal Method",
+            "label": "Table 1",
+            "kind": "table"
+          },
+          {
+            "citation": "S7",
+            "chunk_id": "449e8b677b32b988af7f",
+            "source": "synthetic-boreal.pdf",
+            "page": 1,
+            "section": "1 Boreal Method",
+            "kind": "paragraph"
+          }
+        ],
+        "context_empty": false,
+        "answer_verifier": {
+          "raw": "{\"pass\":true,\"final_answer\":\"**结论：Boreal 更高。**\\n\\n- **Boreal：83.0 small-object AP** [S5][S6][S7]\\n- **Aster：81.0 small-object AP** [S1][S2][S5][S6]\\n- **差距：2.0 AP**（83.0 − 81.0）\\n\\n**可比性说明：** 两份资料都说明，Aster 与 Boreal 使用的是同一套白天数据集和同一评测划分，因此这一比较属于受控对比 [S3][S7]。\\n\\n**资料明确说明未进行的评测：**\\n- **夜间场景（night-time scenes）未测** [S4]\\n- **CPU 推理延迟（CPU inference latency）未测** [S4]\\n\\n**补充（消融结果，非跨方法比较）：** Aster 去掉特征金字塔后，small-object AP 从 81.0 降到 74.0，说明特征金字塔对该指标有贡献 [S4]。\\n\\n**注意：** 所给材料中两份文档均标注为“Synthetic integration fixture - not a real research result”（合成整合样例，非真实研究结果）[S3][S7]，引用这些数值时应保留这一限定。\",\"note\":\"数值与差距均与证据一致；可比性、未测项及合成样例限定均有出处，覆盖问题各部分。\"}",
+          "pass": true,
+          "note": "数值与差距均与证据一致；可比性、未测项及合成样例限定均有出处，覆盖问题各部分。"
+        },
+        "invalid_citations_removed": [],
+        "api_calls": 5,
+        "query_embedding_cache": {
+          "hits": 1,
+          "misses": 3,
+          "maxsize": 64,
+          "currsize": 3
+        },
+        "api_usage": [
+          {
+            "sequence": 6,
+            "model": "deepseek-chat",
+            "ok": true,
+            "prompt_tokens": 124,
+            "completion_tokens": 27,
+            "estimated_cost_usd": null,
+            "response_model": "deepseek-flash",
+            "total_tokens": 151,
+            "latency_ms": 1053.87
+          },
+          {
+            "sequence": 7,
+            "model": "deepseek-chat",
+            "ok": true,
+            "prompt_tokens": 512,
+            "completion_tokens": 145,
+            "estimated_cost_usd": null,
+            "response_model": "deepseek-flash",
+            "total_tokens": 657,
+            "latency_ms": 1158.82
+          },
+          {
+            "sequence": 8,
+            "model": "deepseek-chat",
+            "ok": true,
+            "prompt_tokens": 473,
+            "completion_tokens": 59,
+            "estimated_cost_usd": null,
+            "response_model": "deepseek-flash",
+            "total_tokens": 532,
+            "latency_ms": 1093.6
+          },
+          {
+            "sequence": 9,
+            "model": "deepseek-chat",
+            "ok": true,
+            "prompt_tokens": 721,
+            "completion_tokens": 257,
+            "estimated_cost_usd": null,
+            "response_model": "deepseek-flash",
+            "total_tokens": 978,
+            "latency_ms": 2258.1
+          },
+          {
+            "sequence": 10,
+            "model": "deepseek-chat",
+            "ok": true,
+            "prompt_tokens": 877,
+            "completion_tokens": 314,
+            "estimated_cost_usd": null,
+            "response_model": "deepseek-flash",
+            "total_tokens": 1191,
+            "latency_ms": 1982.54
+          }
+        ]
+      },
+      "wall_latency_ms": 7568.83,
+      "requests": [
+        {
+          "sequence": 6,
+          "model": "deepseek-chat",
+          "ok": true,
+          "prompt_tokens": 124,
+          "completion_tokens": 27,
+          "estimated_cost_usd": null,
+          "response_model": "deepseek-flash",
+          "total_tokens": 151,
+          "latency_ms": 1053.87
+        },
+        {
+          "sequence": 7,
+          "model": "deepseek-chat",
+          "ok": true,
+          "prompt_tokens": 512,
+          "completion_tokens": 145,
+          "estimated_cost_usd": null,
+          "response_model": "deepseek-flash",
+          "total_tokens": 657,
+          "latency_ms": 1158.82
+        },
+        {
+          "sequence": 8,
+          "model": "deepseek-chat",
+          "ok": true,
+          "prompt_tokens": 473,
+          "completion_tokens": 59,
+          "estimated_cost_usd": null,
+          "response_model": "deepseek-flash",
+          "total_tokens": 532,
+          "latency_ms": 1093.6
+        },
+        {
+          "sequence": 9,
+          "model": "deepseek-chat",
+          "ok": true,
+          "prompt_tokens": 721,
+          "completion_tokens": 257,
+          "estimated_cost_usd": null,
+          "response_model": "deepseek-flash",
+          "total_tokens": 978,
+          "latency_ms": 2258.1
+        },
+        {
+          "sequence": 10,
+          "model": "deepseek-chat",
+          "ok": true,
+          "prompt_tokens": 877,
+          "completion_tokens": 314,
+          "estimated_cost_usd": null,
+          "response_model": "deepseek-flash",
+          "total_tokens": 1191,
+          "latency_ms": 1982.54
+        }
+      ]
+    }
+  ]
+}

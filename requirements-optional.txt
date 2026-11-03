@@ -1,0 +1,3 @@
+# Install only if you want Docling structure/OCR. Requires a modern Python.
+-r requirements.txt
+docling>=2.50,<3
