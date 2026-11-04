@@ -6,6 +6,7 @@ import time
 from src.agentic_rag import AgentLimits, run_agentic_rag
 from src.citations import evidence_records
 from src.llm import generate_rag_answer
+from src.guardrails import is_abstention
 from src.vector_store import retrieve
 from eval.cost import usage_totals
 
@@ -41,6 +42,8 @@ def answer_baseline(question, index, k):
     retrieval_ms = (time.perf_counter() - retrieval_started) * 1000
     try:
         answer = generate_rag_answer(question, docs, [], ctx.client, lang_code=ctx.lang_code)
+        if is_abstention(answer):
+            docs = []
         status, error = "ok", None
     except Exception as exc:
         answer, status, error = "", "error", str(exc)

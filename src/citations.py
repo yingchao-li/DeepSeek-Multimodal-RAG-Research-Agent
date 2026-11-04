@@ -17,8 +17,16 @@ def source_label(doc):
 
 
 def evidence_block(docs):
-    return "\n\n".join(f"[S{i}] {source_label(d)}\n{d.get('text', '')}"
+    return "\n\n".join(f"[S{i}] {source_label(d)}\n<reference_material id=\"S{i}\">\n"
+                       f"{d.get('text', '')}\n</reference_material>"
                        for i, d in enumerate(docs, 1))
+
+
+def has_valid_citation(answer, docs):
+    """Only a reference to a supplied, source-labelled chunk counts."""
+    return any(1 <= int(match.group(1)) <= len(docs) and
+               docs[int(match.group(1))-1].get('source')
+               for match in re.finditer(r'\[S(\d+)\]', answer or ''))
 
 
 def validate_citations(answer, docs):

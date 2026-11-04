@@ -3,11 +3,15 @@ Thin wrappers around the DeepSeek chat API: retrieval-grounded answers (RAG) and
 with optional supplementary web context and UI-aligned reply-language instructions.
 """
 
+from contextlib import nullcontext
 from typing import Optional
 
 from src.i18n import reply_language_directive
 from src.prompts import build_system_prompt, build_user_prompt
-from src.api import request, vision_model
+from src.api import api_budget, current_budget, request, vision_model
+from src.citations import has_valid_citation, validate_citations
+from src.guardrails import (abstention_text, audit_request, has_sufficient_evidence,
+                            max_calls)
 from src.media import chat_messages, contains_images, user_content, bind_image_citations
 
 
@@ -20,24 +24,35 @@ def generate_rag_answer(
     *,
     lang_code: Optional[str] = None,
     images: Optional[list[dict]] = None,
+    strict_citations: bool = False,
 ) -> str:
-    system_prompt = build_system_prompt(lang_code)
-    user_prompt = build_user_prompt(
-        query=query,
-        retrieved_docs=retrieved_docs,
-        history=history
-    )
-
-    response = request(client,
-        model=vision_model() if images else "deepseek-chat",
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_content(user_prompt, bind_image_citations(images,retrieved_docs))},
-        ],
-        temperature=0.2,
-    )
-
-    return response.choices[0].message.content
+    with audit_request(query, 'plain_rag', client) as audit:
+        audit.note_evidence(retrieved_docs)
+        if not has_sufficient_evidence(retrieved_docs):
+            audit.abstained = True
+            return abstention_text(lang_code)
+        system_prompt = build_system_prompt(lang_code)
+        user_prompt = build_user_prompt(query=query, retrieved_docs=retrieved_docs, history=history)
+        budget = nullcontext() if current_budget() else api_budget(max_calls=max_calls())
+        with budget:
+            for attempt in range(1 if strict_citations else 2):
+                instruction = ('' if attempt == 0 and not strict_citations else
+                               '\nYour previous answer lacked a valid [S1] citation. '
+                               'Cite at least one provided source label for each supported conclusion. '
+                               'Do not invent citations.')
+                response = request(
+                    client, model=vision_model() if images else 'deepseek-chat',
+                    messages=[
+                        {'role': 'system', 'content': system_prompt + instruction},
+                        {'role': 'user', 'content': user_content(
+                            user_prompt, bind_image_citations(images, retrieved_docs))},
+                    ], temperature=0.2,
+                )
+                answer, _ = validate_citations(response.choices[0].message.content, retrieved_docs)
+                if has_valid_citation(answer, retrieved_docs):
+                    return answer
+        audit.abstained = True
+        return abstention_text(lang_code)
 
 
 def generate_chat_answer(
@@ -65,10 +80,12 @@ def generate_chat_answer(
 
     messages = chat_messages(system_prompt, history, query, images)
 
-    response = request(client,
-        model=vision_model() if contains_images(messages) else "deepseek-chat",
-        messages=messages,
-        temperature=0.5,
-    )
-
-    return response.choices[0].message.content
+    with audit_request(query, 'general_chat', client):
+        budget = nullcontext() if current_budget() else api_budget(max_calls=max_calls())
+        with budget:
+            response = request(client,
+                model=vision_model() if contains_images(messages) else "deepseek-chat",
+                messages=messages,
+                temperature=0.5,
+            )
+        return response.choices[0].message.content

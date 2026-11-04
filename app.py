@@ -15,6 +15,7 @@ from src.agentic_rag import run_agentic_rag
 from src.embeddings import query_embedder
 from src.paper_structure import parse_paper, render_evidence_image, select_visual_evidence
 from src.citations import evidence_records, validate_citations
+from src.guardrails import is_abstention
 from src.media import attachment_path
 from src.ui import (sidebar_upgrade_settings, ensure_index, render_message, image_upload,
                     render_evidence, show_error, retrieval_feedback, render_usage, evaluation_panel,
@@ -402,6 +403,8 @@ if app_mode == "doc":
                                     [a for m in history for a in m.get('attachments', [])][-4:],
                             )
                             answer, _ = validate_citations(answer, retrieved_docs)
+                            if is_abstention(answer):
+                                retrieved_docs = []
                             trace = None
     
                         st.write(answer)
@@ -658,6 +661,8 @@ elif app_mode == "paper":
                                     lang_code=get_language(), images=paper_visuals,
                                 )
                                 answer, _ = validate_citations(answer, retrieved_docs)
+                                if is_abstention(answer):
+                                    retrieved_docs = []
                                 trace = None
     
                             st.write(answer)

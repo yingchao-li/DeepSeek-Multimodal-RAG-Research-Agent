@@ -39,6 +39,7 @@ tmp/
 *.index
 *.log
 eval/results/*/cache.jsonl
+logs/
 
 # Secrets
 .env

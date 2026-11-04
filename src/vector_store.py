@@ -148,7 +148,12 @@ def retrieve(query: str, index, chunks: list[dict], k: int, embed_fn, *, config=
             sparse_hits = [(i, s) for i, s in sparse_hits if chunks[i].get('source') == source_filter]
         fused = reciprocal_rank_fusion([dense_hits, sparse_hits], config.rrf_k)
     docs = [{**chunks[i], 'chunk_id': chunks[i].get('chunk_id') or chunk_id(chunks[i]),
-             'score': float(score)} for i, score in fused]
+             'score': float(score),
+             # RRF scores are reciprocal ranks, so use a bounded relative score
+             # for the evidence gate while keeping the original ranking intact.
+             'evidence_score': (max(0.0, min(1.0, float(score))) if config.strategy == 'dense'
+                                else max(0.0, min(1.0, float(score) * (config.rrf_k + 1) / 2)))}
+            for i, score in fused]
     applied, warning = False, None
     if config.strategy == 'hybrid_rerank' and docs:
         try:

@@ -11,6 +11,7 @@ from dataclasses import dataclass
 import json
 import os
 import time
+import uuid
 from types import SimpleNamespace
 
 
@@ -68,6 +69,10 @@ def api_budget(max_calls=8, max_output_tokens=1024, max_input_chars=100000):
         _BUDGET.reset(token)
 
 
+def current_budget():
+    return _BUDGET.get()
+
+
 def request(client, **kwargs):
     """All application LLM calls pass here, including injected mock clients."""
     budget = _BUDGET.get()
@@ -90,6 +95,7 @@ def request(client, **kwargs):
 class ManagedClient:
     def __init__(self, sdk=None):
         self._sdk = sdk
+        self.audit_session_id = uuid.uuid4().hex
         self.records = []
         self.total_calls = 0
         self.chat = SimpleNamespace(completions=self)
