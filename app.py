@@ -149,7 +149,7 @@ with st.sidebar:
     lang_map = dict(LANGUAGE_OPTIONS)
     _cur = get_language()
     if _cur not in lang_codes:
-        _cur = "zh"
+        _cur = "en"
     _lang_sel = st.selectbox(
         t("language_ui"),
         options=lang_codes,

@@ -23,6 +23,7 @@ class UITests(unittest.TestCase):
 
     def test_all_modes_and_languages_start(self):
         self.assertEqual(len(self.app.exception), 0)
+        self.assertEqual(self.app.session_state['lang'], 'en')
         for mode in ('paper', 'data', 'eval', 'doc'):
             self.app.sidebar.radio[0].set_value(mode).run(timeout=30)
             self.assertEqual(len(self.app.exception), 0, mode)
@@ -91,7 +92,7 @@ class UITests(unittest.TestCase):
                  patch('src.paper_structure.DATA_DIR', root), patch.object(media, 'DATA_DIR', root):
                 self.app.sidebar.radio[0].set_value('paper').run(timeout=30)
                 for checkbox in self.app.checkbox:
-                    if checkbox.label == TRANSLATIONS['zh']['agentic_checkbox']:
+                    if checkbox.label == TRANSLATIONS[self.app.session_state['lang']]['agentic_checkbox']:
                         checkbox.set_value(False)
                 state = {'paper_ready':True, 'paper_vector_ready':True, 'paper_index':index,
                          'paper_chunks':parsed['chunks'], 'paper_text':parsed['text']}

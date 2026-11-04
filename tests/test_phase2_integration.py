@@ -53,6 +53,7 @@ class RealAppIntegrationTests(unittest.TestCase):
         for p in self.patches:
             p.start()
         self.app=AppTest.from_file('app.py').run(timeout=90)
+        self.app.selectbox(key='ui_language_select').set_value('zh').run(timeout=90)
         self.driver.bind(self.app)
 
     def tearDown(self):

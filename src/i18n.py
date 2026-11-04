@@ -730,7 +730,7 @@ def reply_language_directive(lang_code: str) -> str:
 
 def init_language():
     if "lang" not in st.session_state:
-        st.session_state["lang"] = "zh"
+        st.session_state["lang"] = "en"
 
 
 def set_language(lang_code: str):
@@ -739,8 +739,8 @@ def set_language(lang_code: str):
 
 
 def get_language() -> str:
-    lang = st.session_state.get("lang", "zh")
-    return lang if lang in TRANSLATIONS else "zh"
+    lang = st.session_state.get("lang", "en")
+    return lang if lang in TRANSLATIONS else "en"
 
 
 def t(key: str, **kwargs) -> str:
