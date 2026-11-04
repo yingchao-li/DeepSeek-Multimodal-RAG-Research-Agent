@@ -66,6 +66,7 @@ class UITests(unittest.TestCase):
                 self.assertTrue(any(isinstance(m['content'], list) for m in last['messages']))
 
     def test_paper_figure_qa_uses_vision_and_page_evidence(self):
+        self.client._sdk.replies = iter(['Figure 3 shows the architecture [S1].'] * 30)
         import tempfile
         from pathlib import Path
         import fitz

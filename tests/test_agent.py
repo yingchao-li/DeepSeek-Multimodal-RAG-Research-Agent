@@ -57,4 +57,6 @@ class AgentTests(unittest.TestCase):
         client = FakeClient(['draft [S99]', '{"pass":true,"final_answer":"draft [S99]"}'])
         result = self.run_agent('apple', client, limits=AgentLimits(max_api_calls=2, max_iterations=1))
         self.assertNotIn('[S99]', result['answer'])
-        self.assertEqual(result['trace']['invalid_citations_removed'], ['[S99]'])
+        self.assertEqual(result['answer'], 'The available evidence is insufficient for a reliable answer. Add relevant documents, identify a page or figure, or enable web search.')
+        self.assertEqual(result['evidence'], [])
+        self.assertEqual(result['trace']['api_calls'], 2)
