@@ -1,0 +1,17 @@
+generator_model: deepseek-chat
+judge_model: deepseek-chat
+embedding_model: all-MiniLM-L6-v2
+retrieval_strategy: hybrid
+candidate_k: 20
+rrf_k: 60
+top_k: 4
+seed: 42
+max_api_calls: 80
+agent:
+  max_iterations: 2
+  max_tool_calls: 6
+  max_api_calls: 5
+  max_output_tokens: 700
+  max_evidence: 10
+prices_per_million_tokens: {}
+

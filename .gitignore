@@ -38,6 +38,7 @@ tmp/
 *.faiss
 *.index
 *.log
+eval/results/*/cache.jsonl
 
 # Secrets
 .env

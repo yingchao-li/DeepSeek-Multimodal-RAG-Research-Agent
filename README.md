@@ -196,6 +196,28 @@ Mock-based integration tests and real paid DeepSeek tests are explicitly separat
 - The application remains a local single-user Streamlit/JSON system rather than a multi-user production service.
 - API cost is not estimated without a reliable configured price table.
 
+## Plain RAG vs Agentic RAG evaluation
+
+The `eval/` package compares the existing Plain RAG and Agentic RAG pipelines under the same documents, embedding model, hybrid retrieval strategy, initial Top-K, generation model, and questions. It records retrieval evidence, answers, Agent traces, latency, API calls, prompt/completion tokens, and separate real DeepSeek LLM-as-Judge results.
+
+The included 32-question draft and eight-question pilot are based on synthetic validation PDFs. Every item is marked `needs_human_review=true`; these results are a **Real DeepSeek API Pilot Evaluation — Synthetic Dataset**, not a formal benchmark or a performance claim for a research dataset.
+
+Metrics include Retrieval Hit@K, graded answer correctness, faithfulness, abstention accuracy, unsupported-claim rate, mean/median/P95 latency, API calls, tokens, and optional cost. The Judge uses a fixed JSON rubric and temperature zero. Because generator and Judge may use related models, the scores may contain self-preference bias and require human review.
+
+Dry run without API calls:
+
+```bash
+.venv/bin/python -m eval.run --mode both --dataset eval/dataset.jsonl --k 4 --seed 42 --dry-run
+```
+
+Real evaluation:
+
+```bash
+.venv/bin/python -m eval.run --mode both --dataset eval/dataset.jsonl --k 4 --seed 42 --max-api-calls 80
+```
+
+Model prices can be added to `eval/config.yaml` under `prices_per_million_tokens`. When no reliable price is configured, the runner reports real token usage and marks cost as unavailable. The recorded pilot artifacts are under `eval/results/real-pilot-20261103/`.
+
 ## Recommended configuration
 
 For the tested macOS CPU environment:

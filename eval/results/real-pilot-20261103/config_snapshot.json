@@ -1,0 +1,44 @@
+{
+  "generator_model": "deepseek-chat",
+  "judge_model": "deepseek-chat",
+  "embedding_model": "all-MiniLM-L6-v2",
+  "retrieval_strategy": "hybrid",
+  "candidate_k": 20,
+  "rrf_k": 60,
+  "top_k": 4,
+  "seed": 42,
+  "max_api_calls": 80,
+  "agent": {
+    "max_iterations": 2,
+    "max_tool_calls": 6,
+    "max_api_calls": 5,
+    "max_output_tokens": 700,
+    "max_evidence": 10
+  },
+  "prices_per_million_tokens": {},
+  "run_utc": "2026-11-03T09:36:48.628192+00:00",
+  "mode": "both",
+  "dataset": "eval/dataset.jsonl",
+  "dataset_sha256": "64be1b827f524f61a7111db8637a4dd53c46730f3a6cfc3a11373630f46eb161",
+  "dataset_needs_human_review": true,
+  "documents": [
+    {
+      "name": "synthetic-aster.pdf",
+      "sha256": "3dc1a54c48754d9a47295f66407b195cfbb97db3726868eb7b3c9768eb974e30"
+    },
+    {
+      "name": "synthetic-boreal.pdf",
+      "sha256": "e4139c8a2be3bd4b9f0531872a2ecc62636f06b3ae753b5976cafe38ca06dbdc"
+    }
+  ],
+  "k": 4,
+  "api_base_url": "https://api.deepseek.com",
+  "prior_api_calls": 59,
+  "resume_api_calls": 8,
+  "actual_api_calls": 67,
+  "sdk_retries": 0,
+  "git": {
+    "commit": "216398bb68e33ddb03f424ce4765b2d6f69736fb",
+    "dirty": true
+  }
+}

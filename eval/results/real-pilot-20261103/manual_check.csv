@@ -1,0 +1,61 @@
+question_id,pipeline,question,answer,reference_answer,correctness,faithfulness,abstention_correct,unsupported_claim_rate,judge_reason
+p02,agentic,What small-object AP does Boreal achieve on the same daylight dataset and test split?,Boreal achieves **83.0 small-object AP** on the same daylight dataset and test split as Aster [S1]. The accompanying table also lists Boreal at 83.0 and Aster at 81.0 [S2].,Boreal achieves 83.0 small-object AP.,Correct,1.0,True,0.0,"The answer states Boreal achieves 83.0 small-object AP, which is directly supported by both retrieved evidence chunks (paragraph text and table). All claims are supported."
+p01,baseline,What small-object AP does Aster achieve in the controlled detection results?,Aster achieves a small-object AP of **81.0** in the controlled detection results [S1][S3]. The same value also appears in the Boreal comparison table [S4].,Aster achieves 81.0 small-object AP.,Correct,1.0,True,0.0,"The answer states Aster's small-object AP is 81.0, directly supported by Table 2 evidence (Aster | 81.0) and the paragraph text. The additional claim that the same value appears in the Boreal comparison table is also supported by the Boreal Table 1 evidence (Aster | 81.0). All claims are evidence-backed."
+p06,agentic,What is Boreal's CPU inference latency in milliseconds?,"The provided materials do not contain Boreal's CPU inference latency in milliseconds, so this value cannot be confirmed.
+
+- The Boreal excerpt only reports controlled results for small-object AP: Boreal 83.0 vs. Aster 81.0 [S3][S4]. No latency figure is reported.
+- The Aster excerpt explicitly states that ""CPU inference latency were not measured"" [S1], and it likewise gives no latency value for Boreal.
+
+Therefore, based on the available materials, Boreal's CPU inference latency cannot be determined.",The documents do not report Boreal CPU inference latency.,Correct,1.0,True,0.0,"The question is unanswerable, and the answer correctly abstains, stating the latency cannot be determined. All claims are supported: Boreal AP 83.0 vs Aster 81.0 appears in the evidence, and the Aster excerpt explicitly says CPU inference latency was not measured. No unsupported factual claims."
+p03,baseline,Compare Aster and Boreal small-object AP under the shared protocol. Which is higher and by how much?,"**Comparison (shared protocol, Small-object AP)**
+
+- **Boreal: 83.0** [S1][S2]
+- **Aster: 81.0** [S2][S4]
+
+**Which is higher, and by how much:** Boreal is higher by **2.0 points** (83.0 − 81.0) [S1][S2].
+
+**Notes on the evidence**
+- Both figures come from the same table of controlled results, so they are directly comparable under the shared protocol [S2].
+- The Aster paper also reports 81.0 for Aster against a 72.0 baseline, which is consistent with the 81.0 in the comparison table [S4].
+- For context, an ablation in the Aster material shows that removing the feature pyramid lowers the score to 74.0, i.e., the full Aster configuration is the 81.0 figure used above [S3]. That source also states that night-time scenes and CPU inference latency were not measured, so no claims can be made on those aspects [S3].","Boreal is higher: 83.0 versus Aster's 81.0, a difference of 2.0 AP.",Correct,1.0,True,0.0,"Answer correctly states Boreal 83.0 vs Aster 81.0, difference 2.0, all supported by Table 1 evidence; contextual notes about baseline 72.0 and ablation 74.0 are also supported by retrieved chunks."
+p08,agentic,"Are the Aster and Boreal AP values directly comparable, and what evidence supports the comparison?",Research stopped because of an API error or call budget before verification completed. Inspect the trace and retry or adjust limits.,Yes for this synthetic controlled fixture: both use the same daylight dataset and evaluation split.,Incorrect,0.0,False,0.0,"The answer is an error/status message, not a response to the question. It provides no claim about comparability or supporting evidence, so it fails to answer despite the question being answerable (evidence shows Boreal and Aster use the same daylight dataset and test split)."
+p07,agentic,How do the Aster and Boreal architectures differ according to the documents?,"**Short answer:** The provided materials do not describe how the Aster and Boreal architectures differ. They only report detection scores for each method.
+
+**What the materials do show**
+
+- **Aster** achieves a Small-object AP of **81.0**, compared with a Baseline of **72.0** [S1][S2].
+- **Boreal** achieves a Small-object AP of **83.0**, compared with Aster's **81.0** [S3][S4].
+
+So the only comparison supported by the context is a performance one: Boreal scores 2.0 AP points higher than Aster on this metric [S3][S4].
+
+**What cannot be confirmed**
+
+The excerpts contain no description of model components, design choices, training setup, or any other architectural detail for either Aster or Boreal. Therefore, I cannot state from the available materials how the two architectures differ structurally or methodologically.",Aster uses a convolutional backbone with a feature pyramid; Boreal uses a transformer backbone with a single prediction head.,Incorrect,1.0,False,0.0,"The question is answerable per the reference (Aster: convolutional backbone with feature pyramid; Boreal: transformer backbone with single prediction head), but the retrieved evidence only contains AP scores and no architectural details. The answer correctly reports the scores but abstains from the architectural comparison, so it fails to provide the requested answer and its abstention is incorrect given unanswerable=false."
+p02,baseline,What small-object AP does Boreal achieve on the same daylight dataset and test split?,"Boreal achieves **83.0 small-object AP** on the same daylight dataset and test split as Aster [S1][S3].
+
+- [S1] states Boreal ""reaches 83.0 small-object AP on the same daylight dataset and test split as Aster.""
+- [S3]'s comparison table lists Boreal at 83.0 and Aster at 81.0.
+
+Note: both source documents are marked as synthetic integration fixtures, not real research results.",Boreal achieves 83.0 small-object AP.,Correct,1.0,True,0.0,"The answer states Boreal achieves 83.0 small-object AP on the same daylight dataset and test split, matching the reference answer and directly supported by retrieved evidence [S1] and the table [S3]. The note about synthetic fixtures is also supported by the source text."
+p01,agentic,What small-object AP does Aster achieve in the controlled detection results?,"Aster achieves a small-object AP of **81.0** in the controlled detection results [S1][S3]. For comparison, the baseline in the same table scores 72.0 [S1][S3].",Aster achieves 81.0 small-object AP.,Correct,1.0,True,0.0,"The answer states Aster's small-object AP is 81.0, directly supported by Table 2 evidence. The baseline comparison of 72.0 is also supported by the same table. All claims are faithful to retrieved evidence."
+p05,baseline,What exact small-object AP does Aster achieve in night-time scenes?,"The provided materials do not report a small-object AP for Aster in night-time scenes.
+
+- The only Aster small-object AP figures given are **81.0** overall (vs. Baseline 72.0) [S1][S3], and **81.0** for ""Full Aster"" in the ablation [S2].
+- The ablation section explicitly states that **""Night-time scenes and CPU inference latency were not measured""** [S2].
+
+So no exact night-time small-object AP for Aster can be confirmed from the current materials.",The documents do not provide an exact value; night-time scenes were not measured.,Correct,1.0,True,0.0,"The answer correctly states that no night-time small-object AP for Aster is reported, citing the explicit statement that night-time scenes were not measured. All claims (81.0 overall, 81.0 Full Aster, night-time not measured) are supported by the retrieved evidence."
+p07,baseline,How do the Aster and Boreal architectures differ according to the documents?,"**Short answer:** The documents only give a partial picture. They describe Aster's architecture, but they do not describe Boreal's architecture, so a full architectural comparison cannot be made from the available material.
+
+**What the documents say**
+
+- **Aster:** It ""uses a convolutional backbone and a feature pyramid for small object detection"" [S2].
+- **Boreal:** The available excerpts from the Boreal document contain only the method name and results table; no architectural components (backbone, neck, head, etc.) are described [S1][S3][S4].
+
+**What can be compared**
+
+- **Evaluation setting (not architecture):** The controlled test uses ""the same daylight dataset and evaluation split as Boreal"" [S2], so the two methods are compared under matched conditions.
+- **Performance (not architecture):** Boreal scores 83.0 small-object AP versus Aster's 81.0 [S1][S3].
+
+**Caveat:** One source is explicitly marked ""Synthetic integration fixture - not a real research result"" [S2], so these figures and descriptions should not be treated as validated findings.
+
+**Conclusion:** Based on the provided materials, the only architectural detail available is for Aster (convolutional backbone + feature pyramid) [S2]. Boreal's architecture is not described, so the specific architectural differences between Aster and Boreal cannot be confirmed from these documents.",Aster uses a convolutional backbone with a feature pyramid; Boreal uses a transformer backbone with a single prediction head.,Partial,1.0,False,0.0,"The answer correctly reports Aster's convolutional backbone and feature pyramid and accurately notes that the retrieved Boreal excerpts lack architectural details. However, the question is answerable per the reference (Boreal uses a transformer backbone with a single prediction head), so abstaining on Boreal's architecture is incorrect; the answer is materially incomplete."
