@@ -1,4 +1,5 @@
 """Offline tests for deterministic context packing."""
+from copy import deepcopy
 
 
 def test_empty_input_or_non_positive_budget_returns_empty():
@@ -95,3 +96,37 @@ def test_optional_per_source_cap_increases_context_diversity():
 
     assert [chunk["text"] for chunk in uncapped] == ["a-high", "a-second", "b-evidence"]
     assert [chunk["text"] for chunk in capped] == ["a-high", "b-evidence"]
+
+
+def test_metadata_is_unchanged_and_score_ties_keep_original_order():
+    from src.context_packer import pack_context
+
+    chunks = [
+        {
+            "text": "figure evidence",
+            "score": 0.75,
+            "document": "paper-a",
+            "source": "a.pdf",
+            "page": 4,
+            "label": "Figure 3",
+            "kind": "figure",
+            "chunk_id": "figure-3",
+        },
+        {
+            "text": "table evidence",
+            "score": 0.75,
+            "document": "paper-b",
+            "source": "b.pdf",
+            "page": 7,
+            "label": "Table 2",
+            "kind": "table",
+            "chunk_id": "table-2",
+        },
+    ]
+    before = deepcopy(chunks)
+
+    packed = pack_context(chunks, max_tokens=10, count_tokens=lambda _text: 1)
+
+    assert packed == chunks
+    assert [chunk["chunk_id"] for chunk in packed] == ["figure-3", "table-2"]
+    assert chunks == before
