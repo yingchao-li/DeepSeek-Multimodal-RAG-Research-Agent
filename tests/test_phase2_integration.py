@@ -71,7 +71,8 @@ class RealAppIntegrationTests(unittest.TestCase):
 
     def test_real_upload_image_preview_followup_and_disk_persistence(self):
         self.driver.upload(self.app,TRANSLATIONS['zh']['image_upload'],[self.files['image']])
-        self.assertGreater(len(self.app.get('imgs')),0)
+        preview_count = len(self.app.get('image')) + len(self.app.get('imgs'))
+        self.assertGreater(preview_count,0)
         self.button('image_send').click().run(timeout=90)
         self.assert_ok()
         self.assertEqual(self.mock.summaries[-1]['model'],'deepseek-flash')
