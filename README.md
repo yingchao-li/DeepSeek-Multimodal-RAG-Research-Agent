@@ -236,6 +236,37 @@ For the tested macOS CPU environment:
 - Vision model: `deepseek-flash`
 - Agent: enable when needed and retain strict iteration, tool, image, and API-call limits
 
+## Enterprise AI Assistant demo: n8n + FastAPI + Hybrid RAG
+
+The local automation path is `n8n Webhook → input normalization → HTTP Request → FastAPI /api/ask → MiniLM + FAISS/BM25/RRF → mock or DeepSeek generation → structured n8n response`. The supplied workflow is inactive by default and stores no credentials.
+
+Install and start the API on the Mac host:
+
+```bash
+cd /Users/ingchaolee/PycharmProjects/PythonProject_ai
+.venv/bin/python -m pip install -r requirements.txt
+export ENTERPRISE_ASSISTANT_MODE=mock  # real retrieval, explicitly mocked generation
+.venv/bin/python -m uvicorn src.enterprise_api:app --host 0.0.0.0 --port 8000
+```
+
+For real generation, set `ENTERPRISE_ASSISTANT_MODE=real` and provide `DEEPSEEK_API_KEY` through the environment or Streamlit secrets. Mock mode never calls a paid LLM and prefixes its answer with `[MOCK GENERATION — RETRIEVED EVIDENCE]`.
+
+Import `n8n/enterprise_ai_assistant.workflow.json` through **n8n → Workflows → Import from File**. The HTTP Request node targets `http://host.docker.internal:8000/api/ask`, which is required when n8n runs in Docker and FastAPI runs on macOS. Review the workflow before activating its Webhook.
+
+Direct API example:
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/ask \
+  -H 'Content-Type: application/json' \
+  -d '{"question":"How does hybrid retrieval combine BM25 and dense retrieval?"}'
+```
+
+Responses always include `answer`, `sources`, `status`, and `mode`. Sources contain citation ID, document, page, optional figure/table label, chunk ID, and retrieval score. Empty questions return HTTP 400, unavailable backends return 503, and request timeouts return 504.
+
+Run the offline tests with `.venv/bin/python -m pytest -q tests/test_enterprise_api.py`; run the full suite with `.venv/bin/python -m pytest -q`. Local validation details are in `docs/ENTERPRISE_VALIDATION.md`.
+
+Troubleshooting: use `host.docker.internal`, not container `localhost`; confirm `curl http://127.0.0.1:8000/healthz`; keep the model cached or set `ALLOW_MODEL_DOWNLOAD=true`; increase `RAG_REQUEST_TIMEOUT_SECONDS` for slow first-time CPU model loading. The demo has no API authentication or tenant isolation, so bind it only to trusted local networks. Future production work should add service authentication, durable indexes, cancellable backend jobs, observability, and a reviewed enterprise corpus.
+
 ## Installation and launch
 
 ### Existing environment
