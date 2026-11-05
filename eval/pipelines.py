@@ -7,6 +7,7 @@ from src.agentic_rag import AgentLimits, run_agentic_rag
 from src.citations import evidence_records
 from src.llm import generate_rag_answer
 from src.guardrails import is_abstention
+from src.context_packer import retrieve_context
 from src.vector_store import retrieve
 from eval.cost import usage_totals
 
@@ -37,8 +38,8 @@ def answer_baseline(question, index, k):
     ctx: EvalContext = index
     started, sequence = time.perf_counter(), ctx.client.total_calls
     retrieval_started = time.perf_counter()
-    docs = retrieve(question, ctx.retrieval_index, ctx.chunks, k, ctx.embed_fn,
-                    config=ctx.retrieval_config)
+    docs = retrieve_context(retrieve, question, ctx.retrieval_index, ctx.chunks, k, ctx.embed_fn,
+                            config=ctx.retrieval_config)
     retrieval_ms = (time.perf_counter() - retrieval_started) * 1000
     try:
         answer = generate_rag_answer(question, docs, [], ctx.client, lang_code=ctx.lang_code)

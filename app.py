@@ -16,6 +16,7 @@ from src.embeddings import query_embedder
 from src.paper_structure import parse_paper, render_evidence_image, select_visual_evidence
 from src.citations import evidence_records, validate_citations
 from src.guardrails import is_abstention
+from src.context_packer import retrieve_context
 from src.media import attachment_path
 from src.ui import (sidebar_upgrade_settings, ensure_index, render_message, image_upload,
                     render_evidence, show_error, retrieval_feedback, render_usage, evaluation_panel,
@@ -387,7 +388,8 @@ if app_mode == "doc":
                             retrieved_docs = result["retrieved_docs"]
                             trace = result["trace"]
                         else:
-                            retrieved_docs = retrieve(
+                            retrieved_docs = retrieve_context(
+                                retrieve,
                                 query=query,
                                 index=st.session_state["index"],
                                 chunks=st.session_state["chunks"],
@@ -639,7 +641,8 @@ elif app_mode == "paper":
                                 retrieved_docs = result["retrieved_docs"]
                                 trace = result["trace"]
                             else:
-                                retrieved_docs = retrieve(
+                                retrieved_docs = retrieve_context(
+                                    retrieve,
                                     query=paper_query,
                                     index=st.session_state["paper_index"],
                                     chunks=st.session_state["paper_chunks"],

@@ -52,3 +52,15 @@ def pack_context(chunks, max_tokens, *, count_tokens=default_count_tokens,
         used_tokens += token_count
         source_counts[source] = source_counts.get(source, 0) + 1
     return packed
+
+
+def retrieve_context(retriever, *args, enabled=False, max_tokens=4096,
+                     count_tokens=default_count_tokens, similarity_threshold=0.9,
+                     max_per_source=None, **kwargs):
+    """Run an existing retriever and optionally pack its result list."""
+    chunks = retriever(*args, **kwargs)
+    if not enabled:
+        return chunks
+    return pack_context(chunks, max_tokens, count_tokens=count_tokens,
+                        similarity_threshold=similarity_threshold,
+                        max_per_source=max_per_source)
