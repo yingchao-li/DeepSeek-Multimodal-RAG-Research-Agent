@@ -10,13 +10,13 @@ def _normalized_text(text):
     return " ".join(str(text or "").casefold().split())
 
 
-def _token_set(text):
-    return set(re.findall(r"\w+", _normalized_text(text), flags=re.UNICODE))
-
-
-def _is_duplicate(text, accepted_texts, threshold):
+def _text_fingerprint(text):
     normalized = _normalized_text(text)
-    tokens = _token_set(text)
+    return normalized, set(re.findall(r"\w+", normalized, flags=re.UNICODE))
+
+
+def _is_duplicate(fingerprint, accepted_texts, threshold):
+    normalized, tokens = fingerprint
     for accepted_normalized, accepted_tokens in accepted_texts:
         if normalized == accepted_normalized:
             return True
@@ -38,10 +38,10 @@ def pack_context(chunks, max_tokens, *, count_tokens=default_count_tokens,
     ranked = sorted(enumerate(chunks),
                     key=lambda pair: (-float(pair[1].get("score", 0)), pair[0]))
     for _original_index, chunk in ranked:
-        if _is_duplicate(chunk.get("text", ""), accepted_texts, similarity_threshold):
+        fingerprint = _text_fingerprint(chunk.get("text", ""))
+        if _is_duplicate(fingerprint, accepted_texts, similarity_threshold):
             continue
-        text = chunk.get("text", "")
-        accepted_texts.append((_normalized_text(text), _token_set(text)))
+        accepted_texts.append(fingerprint)
         source = chunk.get("source")
         if max_per_source is not None and source_counts.get(source, 0) >= max_per_source:
             continue
