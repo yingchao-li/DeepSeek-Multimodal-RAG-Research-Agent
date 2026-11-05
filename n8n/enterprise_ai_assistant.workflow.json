@@ -1,0 +1,101 @@
+{
+  "name": "Enterprise AI Assistant - FastAPI Hybrid RAG",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "enterprise-ai-assistant",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "8ab4db99-9742-48ed-a4c6-384bfe270b75",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [0, 0],
+      "webhookId": "eae555c9-cd5f-4e17-88ec-46a22a4dd85a"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $json.body ?? $json;\nconst question = typeof input.question === 'string' ? input.question : '';\nreturn [{ json: { question } }];"
+      },
+      "id": "2b99de3a-3aa4-4c70-9788-26067b4d0182",
+      "name": "Normalize Input",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [240, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/api/ask",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ { question: $json.question } }}",
+        "options": {
+          "timeout": 30000,
+          "response": {
+            "response": {
+              "neverError": true,
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "de982d84-bb0e-44ad-91b0-ce129f9399d5",
+      "name": "Call FastAPI Hybrid RAG",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [500, 0],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const response = $json ?? {};\nif (response.error && !response.status) {\n  return [{ json: { status: 'service_unavailable', answer: '', sources: [], mode: 'unknown', message: response.error.message ?? String(response.error) } }];\n}\nreturn [{ json: {\n  status: response.status ?? 'backend_error',\n  answer: response.answer ?? '',\n  sources: Array.isArray(response.sources) ? response.sources : [],\n  mode: response.mode ?? 'unknown',\n  message: response.message ?? null\n} }];"
+      },
+      "id": "02c21a2c-dc06-489c-96c8-a92f976682a8",
+      "name": "Format Structured Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 0]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "1838ef24-c218-4b7d-bb0d-bdeed92c09d5",
+      "name": "Return Answer",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [1020, 0]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{"node": "Normalize Input", "type": "main", "index": 0}]]
+    },
+    "Normalize Input": {
+      "main": [[{"node": "Call FastAPI Hybrid RAG", "type": "main", "index": 0}]]
+    },
+    "Call FastAPI Hybrid RAG": {
+      "main": [[{"node": "Format Structured Result", "type": "main", "index": 0}]]
+    },
+    "Format Structured Result": {
+      "main": [[{"node": "Return Answer", "type": "main", "index": 0}]]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "versionId": "3d12f07c-3a20-480c-be9c-793a1bd1be96",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": ""
+  },
+  "tags": []
+}
