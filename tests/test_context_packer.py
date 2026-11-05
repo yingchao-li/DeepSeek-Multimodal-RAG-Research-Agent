@@ -130,3 +130,33 @@ def test_metadata_is_unchanged_and_score_ties_keep_original_order():
     assert packed == chunks
     assert [chunk["chunk_id"] for chunk in packed] == ["figure-3", "table-2"]
     assert chunks == before
+
+
+def test_retrieval_integration_is_default_off_and_can_pack_fake_results():
+    from src.context_packer import retrieve_context
+
+    retrieved = [
+        {"text": "a primary", "score": 0.9, "source": "a.pdf", "chunk_id": "a1"},
+        {"text": "a secondary", "score": 0.8, "source": "a.pdf", "chunk_id": "a2"},
+        {"text": "b evidence", "score": 0.7, "source": "b.pdf", "chunk_id": "b1"},
+    ]
+    calls = []
+
+    def fake_retriever(query, *, k):
+        calls.append((query, k))
+        return retrieved
+
+    unchanged = retrieve_context(fake_retriever, "question", k=3)
+    packed = retrieve_context(
+        fake_retriever,
+        "question",
+        k=3,
+        enabled=True,
+        max_tokens=2,
+        count_tokens=lambda _text: 1,
+        max_per_source=1,
+    )
+
+    assert unchanged is retrieved
+    assert [chunk["chunk_id"] for chunk in packed] == ["a1", "b1"]
+    assert calls == [("question", 3), ("question", 3)]
