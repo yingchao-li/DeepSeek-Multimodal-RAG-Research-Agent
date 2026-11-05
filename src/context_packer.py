@@ -35,7 +35,9 @@ def pack_context(chunks, max_tokens, *, count_tokens=default_count_tokens,
     accepted_texts = []
     source_counts = {}
     used_tokens = 0
-    for chunk in sorted(chunks, key=lambda item: float(item.get("score", 0)), reverse=True):
+    ranked = sorted(enumerate(chunks),
+                    key=lambda pair: (-float(pair[1].get("score", 0)), pair[0]))
+    for _original_index, chunk in ranked:
         if _is_duplicate(chunk.get("text", ""), accepted_texts, similarity_threshold):
             continue
         text = chunk.get("text", "")
@@ -46,7 +48,7 @@ def pack_context(chunks, max_tokens, *, count_tokens=default_count_tokens,
         token_count = max(0, int(count_tokens(chunk.get("text", ""))))
         if used_tokens + token_count > max_tokens:
             continue
-        packed.append({key: chunk[key] for key in ("text", "score", "source") if key in chunk})
+        packed.append(chunk)
         used_tokens += token_count
         source_counts[source] = source_counts.get(source, 0) + 1
     return packed
