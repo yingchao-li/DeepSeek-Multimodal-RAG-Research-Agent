@@ -65,6 +65,13 @@ The retrieval pipeline supports three modes:
 
 Embedding and corpus fingerprints prevent incompatible FAISS indexes from being reused silently after a model or corpus change.
 
+## Context packing
+
+`pack_context` ranks retrieved chunks, respects a token budget, removes near-duplicates, and can cap chunks per source.
+It preserves document, page, figure/table, score, and chunk metadata so citation numbering remains traceable.
+Enable it with `retrieve_context(retriever, ..., enabled=True, max_tokens=4096)` and optionally set `max_per_source` or `similarity_threshold`.
+The retrieval wrapper defaults to `enabled=False`, so existing Streamlit and evaluation behavior is unchanged.
+
 ### Extended Agentic RAG
 
 The existing agent pipeline was extended rather than replaced. It now supports:
