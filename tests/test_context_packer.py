@@ -74,3 +74,24 @@ def test_near_duplicate_uses_configurable_jaccard_threshold():
 
     assert len(default_packed) == 2
     assert configured_packed == [chunks[0]]
+
+
+def test_optional_per_source_cap_increases_context_diversity():
+    from src.context_packer import pack_context
+
+    chunks = [
+        {"text": "a-high", "score": 0.9, "source": "a.pdf"},
+        {"text": "a-second", "score": 0.8, "source": "a.pdf"},
+        {"text": "b-evidence", "score": 0.7, "source": "b.pdf"},
+    ]
+
+    uncapped = pack_context(chunks, max_tokens=10, count_tokens=lambda _text: 1)
+    capped = pack_context(
+        chunks,
+        max_tokens=10,
+        count_tokens=lambda _text: 1,
+        max_per_source=1,
+    )
+
+    assert [chunk["text"] for chunk in uncapped] == ["a-high", "a-second", "b-evidence"]
+    assert [chunk["text"] for chunk in capped] == ["a-high", "b-evidence"]
