@@ -1,9 +1,13 @@
 """Real Streamlit execution; persistence and API are isolated from user data."""
+from pathlib import Path
 import unittest
 from unittest.mock import patch
 from streamlit.testing.v1 import AppTest
 from src.api import ManagedClient
 from tests.helpers import FakeClient
+
+
+APP_FILE = Path(__file__).resolve().parents[1] / "app.py"
 
 
 class UITests(unittest.TestCase):
@@ -15,11 +19,8 @@ class UITests(unittest.TestCase):
                         patch('src.web_search.fetch_web_snippets', return_value=[])]
         for p in self.patches:
             p.start()
-        self.app = AppTest.from_file('app.py').run(timeout=30)
-
-    def tearDown(self):
-        for p in reversed(self.patches):
-            p.stop()
+            self.addCleanup(p.stop)
+        self.app = AppTest.from_file(APP_FILE).run(timeout=30)
 
     def test_all_modes_and_languages_start(self):
         self.assertEqual(len(self.app.exception), 0)

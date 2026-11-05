@@ -22,6 +22,9 @@ from tests.real_uploads import UploadDriver
 from tests.test_retrieval import ToyEmbedding
 
 
+APP_FILE = Path(__file__).resolve().parents[1] / "app.py"
+
+
 class RealAppIntegrationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -30,9 +33,11 @@ class RealAppIntegrationTests(unittest.TestCase):
 
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
         self.root=Path(self.temp.name)
         self.files=create_validation_fixtures(self.root/'fixtures')
         self.mock=LocalMockAPI().__enter__()
+        self.addCleanup(self.mock.__exit__,None,None,None)
         self.client=ManagedClient(OpenAI(api_key='local-validation-only',base_url=self.mock.base_url,
                                          max_retries=0,timeout=10))
         self.driver=UploadDriver()
@@ -52,15 +57,10 @@ class RealAppIntegrationTests(unittest.TestCase):
             self.patches.append(patch('src.reranking.load_reranker',side_effect=ImportError))
         for p in self.patches:
             p.start()
-        self.app=AppTest.from_file('app.py').run(timeout=90)
+            self.addCleanup(p.stop)
+        self.app=AppTest.from_file(APP_FILE).run(timeout=90)
         self.app.selectbox(key='ui_language_select').set_value('zh').run(timeout=90)
         self.driver.bind(self.app)
-
-    def tearDown(self):
-        for p in reversed(self.patches):
-            p.stop()
-        self.mock.__exit__(None,None,None)
-        self.temp.cleanup()
 
     def button(self,key):
         return next(b for b in self.app.button if b.label==TRANSLATIONS['zh'][key])
@@ -84,7 +84,7 @@ class RealAppIntegrationTests(unittest.TestCase):
         disk=(self.root/'chats.json').read_text()
         self.assertNotIn('base64',disk)
         self.assertIn('attachments',disk)
-        restored=AppTest.from_file('app.py').run(timeout=90)
+        restored=AppTest.from_file(APP_FILE).run(timeout=90)
         current=restored.session_state['chats'][restored.session_state['current_chat_id']]
         self.assertEqual(len(current['messages']),4)
         self.assertTrue(current['messages'][0]['attachments'])
