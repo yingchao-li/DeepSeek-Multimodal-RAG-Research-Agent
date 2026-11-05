@@ -27,21 +27,26 @@ def _is_duplicate(text, accepted_texts, threshold):
 
 
 def pack_context(chunks, max_tokens, *, count_tokens=default_count_tokens,
-                 similarity_threshold=0.9):
+                 similarity_threshold=0.9, max_per_source=None):
     if not chunks or max_tokens <= 0:
         return []
 
     packed = []
     accepted_texts = []
+    source_counts = {}
     used_tokens = 0
     for chunk in sorted(chunks, key=lambda item: float(item.get("score", 0)), reverse=True):
         if _is_duplicate(chunk.get("text", ""), accepted_texts, similarity_threshold):
             continue
         text = chunk.get("text", "")
         accepted_texts.append((_normalized_text(text), _token_set(text)))
+        source = chunk.get("source")
+        if max_per_source is not None and source_counts.get(source, 0) >= max_per_source:
+            continue
         token_count = max(0, int(count_tokens(chunk.get("text", ""))))
         if used_tokens + token_count > max_tokens:
             continue
-        packed.append({key: chunk[key] for key in ("text", "score") if key in chunk})
+        packed.append({key: chunk[key] for key in ("text", "score", "source") if key in chunk})
         used_tokens += token_count
+        source_counts[source] = source_counts.get(source, 0) + 1
     return packed
