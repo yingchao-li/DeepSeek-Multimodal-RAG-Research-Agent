@@ -253,6 +253,20 @@ For real generation, set `ENTERPRISE_ASSISTANT_MODE=real` and provide `DEEPSEEK_
 
 Import `n8n/enterprise_ai_assistant.workflow.json` through **n8n → Workflows → Import from File**. The HTTP Request node targets `http://host.docker.internal:8000/api/ask`, which is required when n8n runs in Docker and FastAPI runs on macOS. Review the workflow before activating its Webhook.
 
+### Verified local n8n execution
+
+The workflow was imported into local n8n 2.46.6 and exercised through **Test workflow** without publishing it. One real `deepseek-chat` request returned a cited answer with five structured sources; the same workflow also handled empty input and a stopped FastAPI service.
+
+| Test workflow scenario | Status | Duration |
+|---|---|---:|
+| Real DeepSeek generation | `ok`, `mode=real` | 9.52 s |
+| Empty `{}` input | `invalid_request` | 231 ms |
+| FastAPI stopped | `service_unavailable` | 77 ms |
+
+The paid smoke request used one API call and 801 tokens (640 prompt + 161 completion). This is a synthetic-corpus integration smoke test, not a production benchmark. Cost is N/A because no trusted price entry was configured. Full evidence is in `docs/ENTERPRISE_VALIDATION.md`.
+
+![n8n canvas and real DeepSeek execution](docs/images/n8n-enterprise-workflow-success.jpg)
+
 Direct API example:
 
 ```bash
